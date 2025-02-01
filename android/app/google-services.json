@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "223848942861",
+    "project_id": "gvc-2025",
+    "storage_bucket": "gvc-2025.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223848942861:android:a742a9d34d57dac1dd7444",
+        "android_client_info": {
+          "package_name": "com.vitality.uk.flutter.gvc2025"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbs71vqAZralWpIV9hWQVzwahsJw--7cc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
