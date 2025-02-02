@@ -189,110 +189,110 @@ class MobileTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'SF Pro Display';
-  TextStyle get displayLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get displayLargeFamily => 'Roboto';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 64.0,
       );
-  String get displayMediumFamily => 'SF Pro Display';
-  TextStyle get displayMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get displayMediumFamily => 'Roboto';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 44.0,
       );
-  String get displaySmallFamily => 'SF Pro Display';
-  TextStyle get displaySmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get displaySmallFamily => 'Roboto';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'SF Pro Display';
-  TextStyle get headlineLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get headlineLargeFamily => 'Roboto';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 28.0,
       );
-  String get headlineMediumFamily => 'SF Pro Display';
-  TextStyle get headlineMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get headlineMediumFamily => 'Roboto';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 24.0,
       );
-  String get headlineSmallFamily => 'SF Pro Display';
-  TextStyle get headlineSmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get headlineSmallFamily => 'Roboto';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 20.0,
       );
-  String get titleLargeFamily => 'SF Pro Display';
-  TextStyle get titleLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get titleLargeFamily => 'Roboto';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'SF Pro Display';
-  TextStyle get titleMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get titleMediumFamily => 'Roboto';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 20.0,
         fontStyle: FontStyle.normal,
       );
-  String get titleSmallFamily => 'SF Pro Display';
-  TextStyle get titleSmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get titleSmallFamily => 'Roboto';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 18.0,
         fontStyle: FontStyle.normal,
       );
-  String get labelLargeFamily => 'SF Pro Display';
-  TextStyle get labelLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get labelLargeFamily => 'Roboto';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 16.0,
       );
-  String get labelMediumFamily => 'SF Pro Display';
-  TextStyle get labelMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get labelMediumFamily => 'Roboto';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'SF Pro Display';
-  TextStyle get labelSmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get labelSmallFamily => 'Roboto';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 12.0,
         fontStyle: FontStyle.normal,
       );
-  String get bodyLargeFamily => 'SF Pro Display';
-  TextStyle get bodyLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get bodyLargeFamily => 'Roboto';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodyMediumFamily => 'SF Pro Display';
-  TextStyle get bodyMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get bodyMediumFamily => 'Roboto';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 14.0,
       );
-  String get bodySmallFamily => 'SF Pro Display';
-  TextStyle get bodySmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get bodySmallFamily => 'Roboto';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
@@ -304,110 +304,110 @@ class TabletTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'SF Pro Display';
-  TextStyle get displayLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get displayLargeFamily => 'Roboto';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 64.0,
       );
-  String get displayMediumFamily => 'SF Pro Display';
-  TextStyle get displayMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get displayMediumFamily => 'Roboto';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 44.0,
       );
-  String get displaySmallFamily => 'SF Pro Display';
-  TextStyle get displaySmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get displaySmallFamily => 'Roboto';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'SF Pro Display';
-  TextStyle get headlineLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get headlineLargeFamily => 'Roboto';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'SF Pro Display';
-  TextStyle get headlineMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get headlineMediumFamily => 'Roboto';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 28.0,
       );
-  String get headlineSmallFamily => 'SF Pro Display';
-  TextStyle get headlineSmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get headlineSmallFamily => 'Roboto';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'SF Pro Display';
-  TextStyle get titleLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get titleLargeFamily => 'Roboto';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'SF Pro Display';
-  TextStyle get titleMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get titleMediumFamily => 'Roboto';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 20.0,
         fontStyle: FontStyle.normal,
       );
-  String get titleSmallFamily => 'SF Pro Display';
-  TextStyle get titleSmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get titleSmallFamily => 'Roboto';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 18.0,
         fontStyle: FontStyle.normal,
       );
-  String get labelLargeFamily => 'SF Pro Display';
-  TextStyle get labelLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get labelLargeFamily => 'Roboto';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelMediumFamily => 'SF Pro Display';
-  TextStyle get labelMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get labelMediumFamily => 'Roboto';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'SF Pro Display';
-  TextStyle get labelSmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get labelSmallFamily => 'Roboto';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
         fontStyle: FontStyle.normal,
       );
-  String get bodyLargeFamily => 'SF Pro Display';
-  TextStyle get bodyLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get bodyLargeFamily => 'Roboto';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
-  String get bodyMediumFamily => 'SF Pro Display';
-  TextStyle get bodyMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get bodyMediumFamily => 'Roboto';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodySmallFamily => 'SF Pro Display';
-  TextStyle get bodySmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get bodySmallFamily => 'Roboto';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,
@@ -419,110 +419,110 @@ class DesktopTypography extends Typography {
 
   final FlutterFlowTheme theme;
 
-  String get displayLargeFamily => 'SF Pro Display';
-  TextStyle get displayLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get displayLargeFamily => 'Roboto';
+  TextStyle get displayLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 64.0,
       );
-  String get displayMediumFamily => 'SF Pro Display';
-  TextStyle get displayMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get displayMediumFamily => 'Roboto';
+  TextStyle get displayMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 44.0,
       );
-  String get displaySmallFamily => 'SF Pro Display';
-  TextStyle get displaySmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get displaySmallFamily => 'Roboto';
+  TextStyle get displaySmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 36.0,
       );
-  String get headlineLargeFamily => 'SF Pro Display';
-  TextStyle get headlineLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get headlineLargeFamily => 'Roboto';
+  TextStyle get headlineLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 32.0,
       );
-  String get headlineMediumFamily => 'SF Pro Display';
-  TextStyle get headlineMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get headlineMediumFamily => 'Roboto';
+  TextStyle get headlineMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 28.0,
       );
-  String get headlineSmallFamily => 'SF Pro Display';
-  TextStyle get headlineSmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get headlineSmallFamily => 'Roboto';
+  TextStyle get headlineSmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w600,
         fontSize: 24.0,
       );
-  String get titleLargeFamily => 'SF Pro Display';
-  TextStyle get titleLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get titleLargeFamily => 'Roboto';
+  TextStyle get titleLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 22.0,
       );
-  String get titleMediumFamily => 'SF Pro Display';
-  TextStyle get titleMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get titleMediumFamily => 'Roboto';
+  TextStyle get titleMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 20.0,
         fontStyle: FontStyle.normal,
       );
-  String get titleSmallFamily => 'SF Pro Display';
-  TextStyle get titleSmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get titleSmallFamily => 'Roboto';
+  TextStyle get titleSmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 18.0,
         fontStyle: FontStyle.normal,
       );
-  String get labelLargeFamily => 'SF Pro Display';
-  TextStyle get labelLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get labelLargeFamily => 'Roboto';
+  TextStyle get labelLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 16.0,
       );
-  String get labelMediumFamily => 'SF Pro Display';
-  TextStyle get labelMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get labelMediumFamily => 'Roboto';
+  TextStyle get labelMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 14.0,
       );
-  String get labelSmallFamily => 'SF Pro Display';
-  TextStyle get labelSmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get labelSmallFamily => 'Roboto';
+  TextStyle get labelSmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.w500,
         fontSize: 12.0,
         fontStyle: FontStyle.normal,
       );
-  String get bodyLargeFamily => 'SF Pro Display';
-  TextStyle get bodyLarge => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get bodyLargeFamily => 'Roboto';
+  TextStyle get bodyLarge => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 18.0,
       );
-  String get bodyMediumFamily => 'SF Pro Display';
-  TextStyle get bodyMedium => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get bodyMediumFamily => 'Roboto';
+  TextStyle get bodyMedium => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 16.0,
       );
-  String get bodySmallFamily => 'SF Pro Display';
-  TextStyle get bodySmall => TextStyle(
-        fontFamily: 'SF Pro Display',
+  String get bodySmallFamily => 'Roboto';
+  TextStyle get bodySmall => GoogleFonts.getFont(
+        'Roboto',
         color: theme.primaryText,
         fontWeight: FontWeight.normal,
         fontSize: 12.0,

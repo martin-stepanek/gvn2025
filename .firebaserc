@@ -1,7 +1,5 @@
 {
   "projects": {
     "default": "gvc-2025"
-  },
-  "targets": {},
-  "etags": {}
+  }
 }

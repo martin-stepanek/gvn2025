@@ -5,12 +5,9 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-
 import 'intro20_model.dart';
 export 'intro20_model.dart';
 
@@ -62,8 +59,8 @@ class _Intro20WidgetState extends State<Intro20Widget> {
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: Center(
               child: SizedBox(
-                width: 50,
-                height: 50,
+                width: 50.0,
+                height: 50.0,
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
                     FlutterFlowTheme.of(context).primary,
@@ -86,18 +83,18 @@ class _Intro20WidgetState extends State<Intro20Widget> {
               key: scaffoldKey,
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               appBar: PreferredSize(
-                preferredSize: Size.fromHeight(20),
+                preferredSize: const Size.fromHeight(20.0),
                 child: AppBar(
                   backgroundColor:
                       FlutterFlowTheme.of(context).primaryBackground,
                   automaticallyImplyLeading: false,
-                  actions: [],
+                  actions: const [],
                   centerTitle: true,
-                  elevation: 0,
+                  elevation: 0.0,
                 ),
               ),
               body: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 40),
+                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 40.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -108,10 +105,10 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 40.0),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
+                                borderRadius: BorderRadius.circular(8.0),
                                 child: SvgPicture.asset(
                                   'assets/images/Smartwatch.svg',
                                   width: MediaQuery.sizeOf(context).width * 0.5,
@@ -128,7 +125,7 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .headlineLargeFamily,
-                                    fontSize: 24,
+                                    fontSize: 24.0,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
@@ -138,8 +135,8 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                   ),
                             ),
                             Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 15.0, 0.0, 0.0),
                               child: Text(
                                 'We will automatically sync your activity data to track your progress against your weekly goals.\n\nIf you don\'t have an activity tracker, you can use your mobile phone to record your daily steps.',
                                 textAlign: TextAlign.center,
@@ -158,15 +155,15 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                             ),
                             if (false)
                               Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 10.0, 0.0, 0.0),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(10),
+                                    padding: const EdgeInsets.all(10.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -247,7 +244,7 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                                 onChanged: (val) =>
                                                     safeSetState(() => _model
                                                         .dropDownValue1 = val),
-                                                height: 40,
+                                                height: 40.0,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodySmall
@@ -274,26 +271,27 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .info,
-                                                  size: 24,
+                                                  size: 24.0,
                                                 ),
                                                 fillColor:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                elevation: 2,
+                                                elevation: 2.0,
                                                 borderColor:
                                                     FlutterFlowTheme.of(context)
                                                         .lineColor,
-                                                borderWidth: 1,
-                                                borderRadius: 8,
-                                                margin: EdgeInsetsDirectional
-                                                    .fromSTEB(15, 4, 15, 4),
+                                                borderWidth: 1.0,
+                                                borderRadius: 8.0,
+                                                margin: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        15.0, 4.0, 15.0, 4.0),
                                                 hidesUnderline: true,
                                                 isOverButton: false,
                                                 isSearchable: false,
                                                 isMultiSelect: false,
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 10)),
+                                          ].divide(const SizedBox(width: 10.0)),
                                         ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -349,7 +347,7 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                                 onChanged: (val) =>
                                                     safeSetState(() => _model
                                                         .dropDownValue2 = val),
-                                                height: 40,
+                                                height: 40.0,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodySmall
@@ -376,26 +374,27 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .info,
-                                                  size: 24,
+                                                  size: 24.0,
                                                 ),
                                                 fillColor:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                elevation: 2,
+                                                elevation: 2.0,
                                                 borderColor:
                                                     FlutterFlowTheme.of(context)
                                                         .lineColor,
-                                                borderWidth: 1,
-                                                borderRadius: 8,
-                                                margin: EdgeInsetsDirectional
-                                                    .fromSTEB(15, 4, 15, 4),
+                                                borderWidth: 1.0,
+                                                borderRadius: 8.0,
+                                                margin: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        15.0, 4.0, 15.0, 4.0),
                                                 hidesUnderline: true,
                                                 isOverButton: false,
                                                 isSearchable: false,
                                                 isMultiSelect: false,
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 10)),
+                                          ].divide(const SizedBox(width: 10.0)),
                                         ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -451,7 +450,7 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                                 onChanged: (val) =>
                                                     safeSetState(() => _model
                                                         .dropDownValue3 = val),
-                                                height: 40,
+                                                height: 40.0,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodySmall
@@ -478,28 +477,29 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .info,
-                                                  size: 24,
+                                                  size: 24.0,
                                                 ),
                                                 fillColor:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                elevation: 2,
+                                                elevation: 2.0,
                                                 borderColor:
                                                     FlutterFlowTheme.of(context)
                                                         .lineColor,
-                                                borderWidth: 1,
-                                                borderRadius: 8,
-                                                margin: EdgeInsetsDirectional
-                                                    .fromSTEB(15, 4, 15, 4),
+                                                borderWidth: 1.0,
+                                                borderRadius: 8.0,
+                                                margin: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        15.0, 4.0, 15.0, 4.0),
                                                 hidesUnderline: true,
                                                 isOverButton: false,
                                                 isSearchable: false,
                                                 isMultiSelect: false,
                                               ),
                                             ),
-                                          ].divide(SizedBox(width: 10)),
+                                          ].divide(const SizedBox(width: 10.0)),
                                         ),
-                                      ].divide(SizedBox(height: 10)),
+                                      ].divide(const SizedBox(height: 10.0)),
                                     ),
                                   ),
                                 ),
@@ -509,7 +509,8 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                      padding:
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () {
                           print('Next pressed ...');
@@ -517,10 +518,11 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                         text: 'Continue',
                         options: FFButtonOptions(
                           width: double.infinity,
-                          height: 40,
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                          iconPadding:
-                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                          height: 40.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle: FlutterFlowTheme.of(context)
                               .bodySmall
@@ -529,18 +531,18 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                     .bodySmallFamily,
                                 color: FlutterFlowTheme.of(context)
                                     .primaryBackground,
-                                fontSize: 16,
+                                fontSize: 16.0,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .bodySmallFamily),
                               ),
-                          elevation: 0,
-                          borderSide: BorderSide(
+                          elevation: 0.0,
+                          borderSide: const BorderSide(
                             color: Colors.transparent,
-                            width: 1,
+                            width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(32),
+                          borderRadius: BorderRadius.circular(32.0),
                         ),
                       ),
                     ),

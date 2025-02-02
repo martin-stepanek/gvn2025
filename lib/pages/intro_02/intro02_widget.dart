@@ -1,13 +1,11 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart'
+    as smooth_page_indicator;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart'
-    as smooth_page_indicator;
-import 'package:cloud_functions/cloud_functions.dart';
-
 import 'intro02_model.dart';
 export 'intro02_model.dart';
 
@@ -20,42 +18,23 @@ class Intro02Widget extends StatefulWidget {
 
 class _Intro02WidgetState extends State<Intro02Widget> {
   late Intro02Model _model;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
-  final TextEditingController poemSubjectController = TextEditingController();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => Intro02Model());
+
     logFirebaseEvent('screen_view', parameters: {'screen_name': 'intro_02'});
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
   void dispose() {
-    poemSubjectController.dispose();
     _model.dispose();
-    super.dispose();
-  }
 
-  Future<void> _composePoem() async {
-    final subject = poemSubjectController.text;
-    final poemFlow = FirebaseFunctions.instance.httpsCallable('generatePoem');
-    try {
-      final response = await poemFlow.call(subject);
-      final poem = response.data;
-      if (!mounted) return;
-      await showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Generated Poem'),
-          content: Text(poem?.toString() ?? 'No poem found'),
-        ),
-      );
-    } catch (e) {
-      // Handle errors if needed
-    }
+    super.dispose();
   }
 
   @override
@@ -92,43 +71,42 @@ class _Intro02WidgetState extends State<Intro02Widget> {
               children: [
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(
-                    0.0,
-                    valueOrDefault<double>(
-                      () {
-                        if (MediaQuery.sizeOf(context).width <
-                            kBreakpointSmall) {
-                          return 50.0;
-                        } else if (MediaQuery.sizeOf(context).width <
-                            kBreakpointMedium) {
-                          return 50.0;
-                        } else if (MediaQuery.sizeOf(context).width <
-                            kBreakpointLarge) {
-                          return 50.0;
-                        } else {
-                          return 100.0;
-                        }
-                      }(),
                       0.0,
-                    ),
-                    0.0,
-                    valueOrDefault<double>(
-                      () {
-                        if (MediaQuery.sizeOf(context).width <
-                            kBreakpointSmall) {
-                          return 50.0;
-                        } else if (MediaQuery.sizeOf(context).width <
-                            kBreakpointMedium) {
-                          return 50.0;
-                        } else if (MediaQuery.sizeOf(context).width <
-                            kBreakpointLarge) {
-                          return 50.0;
-                        } else {
-                          return 100.0;
-                        }
-                      }(),
+                      valueOrDefault<double>(
+                        () {
+                          if (MediaQuery.sizeOf(context).width <
+                              kBreakpointSmall) {
+                            return 50.0;
+                          } else if (MediaQuery.sizeOf(context).width <
+                              kBreakpointMedium) {
+                            return 50.0;
+                          } else if (MediaQuery.sizeOf(context).width <
+                              kBreakpointLarge) {
+                            return 50.0;
+                          } else {
+                            return 100.0;
+                          }
+                        }(),
+                        0.0,
+                      ),
                       0.0,
-                    ),
-                  ),
+                      valueOrDefault<double>(
+                        () {
+                          if (MediaQuery.sizeOf(context).width <
+                              kBreakpointSmall) {
+                            return 50.0;
+                          } else if (MediaQuery.sizeOf(context).width <
+                              kBreakpointMedium) {
+                            return 50.0;
+                          } else if (MediaQuery.sizeOf(context).width <
+                              kBreakpointLarge) {
+                            return 50.0;
+                          } else {
+                            return 100.0;
+                          }
+                        }(),
+                        0.0,
+                      )),
                   child: Container(
                     constraints: const BoxConstraints(
                       maxWidth: 350.0,
@@ -155,13 +133,9 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                           MainAxisAlignment.center,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsetsDirectional
-                                              .fromSTEB(
-                                            0.0,
-                                            40.0,
-                                            0.0,
-                                            40.0,
-                                          ),
+                                          padding:
+                                              const EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 40.0, 0.0, 40.0),
                                           child: Container(
                                             height: MediaQuery.sizeOf(context)
                                                     .height *
@@ -185,14 +159,9 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding:
-                                                    const EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                  0.0,
-                                                  0.0,
-                                                  0.0,
-                                                  15.0,
-                                                ),
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 15.0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -249,14 +218,9 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding:
-                                                    const EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                  0.0,
-                                                  0.0,
-                                                  0.0,
-                                                  10.0,
-                                                ),
+                                                padding: const EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 0.0, 0.0, 10.0),
                                                 child: Text(
                                                   'Let’s get started on your journey to a more secure future. ',
                                                   textAlign: TextAlign.center,
@@ -361,9 +325,8 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                       ],
                                     ),
                                     Padding(
-                                      padding:
-                                          const EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 20.0, 0.0, 0.0),
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 20.0, 0.0, 0.0),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
@@ -437,8 +400,8 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                            0.0, 0.0, 0.0, 5.0),
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 5.0),
                                                     child: Image.asset(
                                                       'assets/images/Smartwatch_pink_FinFIt.png',
                                                       width: 55.0,
@@ -503,8 +466,8 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                            0.0, 0.0, 0.0, 5.0),
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 5.0),
                                                     child: Image.asset(
                                                       'assets/images/Form_pink_FinFit.png',
                                                       width: 55.0,
@@ -569,8 +532,8 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                            0.0, 0.0, 0.0, 5.0),
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 5.0),
                                                     child: Image.asset(
                                                       'assets/images/Footprint_pink_FinFit.png',
                                                       width: 55.0,
@@ -635,8 +598,8 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                                   Padding(
                                                     padding:
                                                         const EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                            0.0, 0.0, 0.0, 5.0),
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 5.0),
                                                     child: Image.asset(
                                                       'assets/images/Amazon_logo_pink_FinFit.png',
                                                       width: 55.0,
@@ -653,6 +616,7 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                                         children: [
                                                           const TextSpan(
                                                             text: 'Earn a ',
+                                                            style: TextStyle(),
                                                           ),
                                                           TextSpan(
                                                             text:
@@ -682,6 +646,7 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                                           const TextSpan(
                                                             text:
                                                                 'for completing healthy activities',
+                                                            style: TextStyle(),
                                                           )
                                                         ],
                                                         style:
@@ -730,8 +695,7 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                                   ),
                                                 ],
                                               ),
-                                            ].divide(
-                                                const SizedBox(height: 30.0)),
+                                            ].divide(const SizedBox(height: 30.0)),
                                           ),
                                         ],
                                       ),
@@ -739,12 +703,10 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                   ],
                                 ),
                                 Align(
-                                  alignment:
-                                      const AlignmentDirectional(0.0, 1.0),
+                                  alignment: const AlignmentDirectional(0.0, 1.0),
                                   child: Padding(
-                                    padding:
-                                        const EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 0.0, 20.0),
+                                    padding: const EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 20.0),
                                     child: smooth_page_indicator
                                         .SmoothPageIndicator(
                                       controller: _model.pageViewController ??=
@@ -755,8 +717,7 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                         await _model.pageViewController!
                                             .animateToPage(
                                           i,
-                                          duration:
-                                              const Duration(milliseconds: 500),
+                                          duration: const Duration(milliseconds: 500),
                                           curve: Curves.ease,
                                         );
                                         safeSetState(() {});
@@ -826,6 +787,7 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                               );
                             } else {
                               logFirebaseEvent('LogIn_navigate_to');
+
                               context.pushNamed('intro_03');
                             }
                           },
@@ -884,37 +846,6 @@ class _Intro02WidgetState extends State<Intro02Widget> {
                                           .bodySmallFamily),
                                 ),
                             elevation: 0.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(32.0),
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        TextFormField(
-                          controller: poemSubjectController,
-                          decoration: const InputDecoration(
-                            labelText: 'Subject',
-                            border: OutlineInputBorder(),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        FFButtonWidget(
-                          onPressed: _composePoem,
-                          text: 'Compose a poem on this subject',
-                          options: FFButtonOptions(
-                            width: double.infinity,
-                            height: 40.0,
-                            color: FlutterFlowTheme.of(context).primary,
-                            textStyle:
-                                FlutterFlowTheme.of(context).bodySmall.override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodySmallFamily,
-                                      color: FlutterFlowTheme.of(context).info,
-                                      fontSize: 16.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
                             borderSide: const BorderSide(
                               color: Colors.transparent,
                               width: 1.0,

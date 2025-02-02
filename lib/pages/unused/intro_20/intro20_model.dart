@@ -20,10 +20,6 @@ class Intro20Model extends FlutterFlowModel<Intro20Widget> {
   // State field(s) for DropDown widget.
   String? dropDownValue3;
   FormFieldController<String>? dropDownValueController3;
-  // Stores action output result for [Custom Action - connectAppleHealth] action in Next widget.
-  bool? appleHealthSuccess;
-  // Stores action output result for [Custom Action - getDataAppleHealth] action in Next widget.
-  List<CombinedDataStruct>? appleHealthData;
 
   @override
   void initState(BuildContext context) {}

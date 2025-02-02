@@ -2,7 +2,6 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'app_version_check_model.dart';
@@ -107,12 +106,10 @@ class _AppVersionCheckWidgetState extends State<AppVersionCheckWidget> {
                 ],
               ),
               Padding(
-                padding:
-                    const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent('APP_VERSION_CHECK_LOG_OUT_BTN_ON_TAP');
-                    logFirebaseEvent('Button_custom_action');
                     logFirebaseEvent('Button_auth');
                     GoRouter.of(context).prepareAuthEvent();
                     await authManager.signOut();
@@ -122,10 +119,10 @@ class _AppVersionCheckWidgetState extends State<AppVersionCheckWidget> {
                   },
                   text: 'Log out',
                   options: FFButtonOptions(
-                    padding: const EdgeInsetsDirectional.fromSTEB(
-                        24.0, 0.0, 24.0, 0.0),
-                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                        0.0, 0.0, 0.0, 0.0),
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:

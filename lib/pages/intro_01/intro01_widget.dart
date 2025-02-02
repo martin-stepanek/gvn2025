@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -146,11 +145,7 @@ class _Intro01WidgetState extends State<Intro01Widget> {
                                 FlutterFlowDropDown<String>(
                                   controller: _model.usernameValueController ??=
                                       FormFieldController<String>(null),
-                                  options: const [
-                                    'Option 1',
-                                    'Option 2',
-                                    'Option 3'
-                                  ],
+                                  options: const ['Option 1', 'Option 2', 'Option 3'],
                                   onChanged: (val) => safeSetState(
                                       () => _model.usernameValue = val),
                                   width: double.infinity,
@@ -292,8 +287,8 @@ class _Intro01WidgetState extends State<Intro01Widget> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            0.0, 30.0, 0.0, 0.0),
+                        padding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             logFirebaseEvent('INTRO_01_PAGE_LogIn_ON_TAP');
@@ -323,7 +318,6 @@ class _Intro01WidgetState extends State<Intro01Widget> {
                               progress: Progress.account_created,
                               appVersion: FFAppConstants.appVersion,
                             ));
-                            logFirebaseEvent('LogIn_action_block');
                             logFirebaseEvent('LogIn_navigate_to');
 
                             context.goNamedAuth('intro_02', context.mounted);

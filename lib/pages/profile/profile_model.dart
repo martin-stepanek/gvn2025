@@ -1,5 +1,3 @@
-import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'profile_widget.dart' show ProfileWidget;
 import 'package:flutter/material.dart';
@@ -16,10 +14,6 @@ class ProfileModel extends FlutterFlowModel<ProfileWidget> {
   TextEditingController? emailForPasswordResetTextController;
   String? Function(BuildContext, String?)?
       emailForPasswordResetTextControllerValidator;
-  // Stores action output result for [Custom Action - connectAppleHealth] action in linkTracker widget.
-  bool? appleHealthSuccess;
-  // Stores action output result for [Custom Action - getDataAppleHealth] action in refreshData widget.
-  List<CombinedDataStruct>? appleHealthData;
 
   @override
   void initState(BuildContext context) {}
