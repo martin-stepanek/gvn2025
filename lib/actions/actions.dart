@@ -11,21 +11,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Future onesignalInitialise(
-  BuildContext context, {
-  String? userId,
-}) async {
-  logFirebaseEvent('onesignalInitialise_custom_action');
-  await actions.onesignalLogin(
-    userId!,
-  );
-  logFirebaseEvent('onesignalInitialise_custom_action');
-  await actions.onesignalAddTag(
-    'study_group',
-    'vitality_smart_coach',
-  );
-}
-
 Future nbaAdd(
   BuildContext context, {
   NbaRecord? nba,
@@ -466,8 +451,9 @@ Future nbaNew(
     ),
   });
   if (nbaAvailable!
-          .where((e) => e.activity == nbaCompleted.activity)
-          .toList().isNotEmpty) {
+      .where((e) => e.activity == nbaCompleted.activity)
+      .toList()
+      .isNotEmpty) {
     logFirebaseEvent('nbaNew_action_block');
     await action_blocks.nbaSelect(
       context,

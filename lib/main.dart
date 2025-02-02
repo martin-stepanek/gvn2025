@@ -32,7 +32,6 @@ void main() async {
   }
 
   // Start final custom actions code
-  await actions.onesignalInitialise();
   await actions.crashlyticsAsync();
   // End final custom actions code
 

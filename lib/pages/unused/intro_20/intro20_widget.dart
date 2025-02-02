@@ -1,15 +1,16 @@
 import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
-import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/custom_code/actions/index.dart' as actions;
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
 import 'intro20_model.dart';
 export 'intro20_model.dart';
 
@@ -61,8 +62,8 @@ class _Intro20WidgetState extends State<Intro20Widget> {
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: Center(
               child: SizedBox(
-                width: 50.0,
-                height: 50.0,
+                width: 50,
+                height: 50,
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
                     FlutterFlowTheme.of(context).primary,
@@ -85,18 +86,18 @@ class _Intro20WidgetState extends State<Intro20Widget> {
               key: scaffoldKey,
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               appBar: PreferredSize(
-                preferredSize: const Size.fromHeight(20.0),
+                preferredSize: Size.fromHeight(20),
                 child: AppBar(
                   backgroundColor:
                       FlutterFlowTheme.of(context).primaryBackground,
                   automaticallyImplyLeading: false,
-                  actions: const [],
+                  actions: [],
                   centerTitle: true,
-                  elevation: 0.0,
+                  elevation: 0,
                 ),
               ),
               body: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 40.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 40),
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,10 +108,10 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 40.0),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 40),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(8),
                                 child: SvgPicture.asset(
                                   'assets/images/Smartwatch.svg',
                                   width: MediaQuery.sizeOf(context).width * 0.5,
@@ -127,7 +128,7 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                   .override(
                                     fontFamily: FlutterFlowTheme.of(context)
                                         .headlineLargeFamily,
-                                    fontSize: 24.0,
+                                    fontSize: 24,
                                     letterSpacing: 0.0,
                                     fontWeight: FontWeight.w600,
                                     useGoogleFonts: GoogleFonts.asMap()
@@ -137,8 +138,8 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                   ),
                             ),
                             Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 15.0, 0.0, 0.0),
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                               child: Text(
                                 'We will automatically sync your activity data to track your progress against your weekly goals.\n\nIf you don\'t have an activity tracker, you can use your mobile phone to record your daily steps.',
                                 textAlign: TextAlign.center,
@@ -157,15 +158,15 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                             ),
                             if (false)
                               Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 10.0, 0.0, 0.0),
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
+                                    padding: EdgeInsets.all(10),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       crossAxisAlignment:
@@ -246,7 +247,7 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                                 onChanged: (val) =>
                                                     safeSetState(() => _model
                                                         .dropDownValue1 = val),
-                                                height: 40.0,
+                                                height: 40,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodySmall
@@ -273,27 +274,26 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .info,
-                                                  size: 24.0,
+                                                  size: 24,
                                                 ),
                                                 fillColor:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                elevation: 2.0,
+                                                elevation: 2,
                                                 borderColor:
                                                     FlutterFlowTheme.of(context)
                                                         .lineColor,
-                                                borderWidth: 1.0,
-                                                borderRadius: 8.0,
-                                                margin: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        15.0, 4.0, 15.0, 4.0),
+                                                borderWidth: 1,
+                                                borderRadius: 8,
+                                                margin: EdgeInsetsDirectional
+                                                    .fromSTEB(15, 4, 15, 4),
                                                 hidesUnderline: true,
                                                 isOverButton: false,
                                                 isSearchable: false,
                                                 isMultiSelect: false,
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 10.0)),
+                                          ].divide(SizedBox(width: 10)),
                                         ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -349,7 +349,7 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                                 onChanged: (val) =>
                                                     safeSetState(() => _model
                                                         .dropDownValue2 = val),
-                                                height: 40.0,
+                                                height: 40,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodySmall
@@ -376,27 +376,26 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .info,
-                                                  size: 24.0,
+                                                  size: 24,
                                                 ),
                                                 fillColor:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                elevation: 2.0,
+                                                elevation: 2,
                                                 borderColor:
                                                     FlutterFlowTheme.of(context)
                                                         .lineColor,
-                                                borderWidth: 1.0,
-                                                borderRadius: 8.0,
-                                                margin: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        15.0, 4.0, 15.0, 4.0),
+                                                borderWidth: 1,
+                                                borderRadius: 8,
+                                                margin: EdgeInsetsDirectional
+                                                    .fromSTEB(15, 4, 15, 4),
                                                 hidesUnderline: true,
                                                 isOverButton: false,
                                                 isSearchable: false,
                                                 isMultiSelect: false,
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 10.0)),
+                                          ].divide(SizedBox(width: 10)),
                                         ),
                                         Row(
                                           mainAxisSize: MainAxisSize.max,
@@ -452,7 +451,7 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                                 onChanged: (val) =>
                                                     safeSetState(() => _model
                                                         .dropDownValue3 = val),
-                                                height: 40.0,
+                                                height: 40,
                                                 textStyle:
                                                     FlutterFlowTheme.of(context)
                                                         .bodySmall
@@ -479,29 +478,28 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .info,
-                                                  size: 24.0,
+                                                  size: 24,
                                                 ),
                                                 fillColor:
                                                     FlutterFlowTheme.of(context)
                                                         .primary,
-                                                elevation: 2.0,
+                                                elevation: 2,
                                                 borderColor:
                                                     FlutterFlowTheme.of(context)
                                                         .lineColor,
-                                                borderWidth: 1.0,
-                                                borderRadius: 8.0,
-                                                margin: const EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        15.0, 4.0, 15.0, 4.0),
+                                                borderWidth: 1,
+                                                borderRadius: 8,
+                                                margin: EdgeInsetsDirectional
+                                                    .fromSTEB(15, 4, 15, 4),
                                                 hidesUnderline: true,
                                                 isOverButton: false,
                                                 isSearchable: false,
                                                 isMultiSelect: false,
                                               ),
                                             ),
-                                          ].divide(const SizedBox(width: 10.0)),
+                                          ].divide(SizedBox(width: 10)),
                                         ),
-                                      ].divide(const SizedBox(height: 10.0)),
+                                      ].divide(SizedBox(height: 10)),
                                     ),
                                   ),
                                 ),
@@ -511,128 +509,18 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                       child: FFButtonWidget(
-                        onPressed: () async {
-                          logFirebaseEvent('INTRO_20_PAGE_Next_ON_TAP');
-                          var shouldSetState = false;
-                          logFirebaseEvent('Next_custom_action');
-                          _model.appleHealthSuccess =
-                              await actions.connectAppleHealth(
-                            (currentUserDocument?.dataTypesToDownload
-                                        .toList() ??
-                                    [])
-                                .toList(),
-                          );
-                          shouldSetState = true;
-                          logFirebaseEvent('Next_show_snack_bar');
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Getting data from your activity tracker...',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyLarge
-                                    .override(
-                                      fontFamily: FlutterFlowTheme.of(context)
-                                          .bodyLargeFamily,
-                                      color: FlutterFlowTheme.of(context).info,
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: GoogleFonts.asMap()
-                                          .containsKey(
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyLargeFamily),
-                                    ),
-                              ),
-                              duration: const Duration(milliseconds: 20000),
-                              backgroundColor:
-                                  FlutterFlowTheme.of(context).primaryText,
-                            ),
-                          );
-                          if (_model.appleHealthSuccess!) {
-                            logFirebaseEvent('Next_custom_action');
-                            _model.appleHealthData =
-                                await actions.getDataAppleHealth(
-                              currentUserDocument!.lastDataFetch! >
-                                      dateTimeFromSecondsSinceEpoch(
-                                          getCurrentTimestamp
-                                                  .secondsSinceEpoch -
-                                              5259487)
-                                  ? dateTimeFromSecondsSinceEpoch(
-                                      currentUserDocument!.lastDataFetch!
-                                              .secondsSinceEpoch -
-                                          172800)
-                                  : dateTimeFromSecondsSinceEpoch(
-                                      getCurrentTimestamp.secondsSinceEpoch -
-                                          5259487),
-                              getCurrentTimestamp,
-                              valueOrDefault(
-                                  currentUserDocument?.timezoneOffset, 0),
-                              (currentUserDocument?.dataTypesToDownload
-                                          .toList() ??
-                                      [])
-                                  .toList(),
-                              currentUserReference!,
-                              true,
-                            );
-                            shouldSetState = true;
-                            logFirebaseEvent('Next_backend_call');
-
-                            await currentUserReference!
-                                .update(createUsersRecordData(
-                              trackerLinked: true,
-                              appleHealthLinked: true,
-                              lastDataFetch: getCurrentTimestamp,
-                            ));
-                            logFirebaseEvent('Next_hide_snack_bar');
-                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                          } else {
-                            logFirebaseEvent('Next_show_snack_bar');
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Connection unsuccessful. Please try again.',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: FlutterFlowTheme.of(context)
-                                            .bodyMediumFamily,
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: GoogleFonts.asMap()
-                                            .containsKey(
-                                                FlutterFlowTheme.of(context)
-                                                    .bodyMediumFamily),
-                                      ),
-                                ),
-                                duration: const Duration(milliseconds: 2000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).primaryText,
-                              ),
-                            );
-                            if (shouldSetState) safeSetState(() {});
-                            return;
-                          }
-
-                          logFirebaseEvent('Next_backend_call');
-
-                          await currentUserReference!
-                              .update(createUsersRecordData(
-                            progress: Progress.onboarding_complete,
-                            onboardingComplete: true,
-                            homepageMessageUpdated: true,
-                          ));
-                          if (shouldSetState) safeSetState(() {});
+                        onPressed: () {
+                          print('Next pressed ...');
                         },
                         text: 'Continue',
                         options: FFButtonOptions(
                           width: double.infinity,
-                          height: 40.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
+                          height: 40,
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                          iconPadding:
+                              EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                           color: FlutterFlowTheme.of(context).primary,
                           textStyle: FlutterFlowTheme.of(context)
                               .bodySmall
@@ -641,18 +529,18 @@ class _Intro20WidgetState extends State<Intro20Widget> {
                                     .bodySmallFamily,
                                 color: FlutterFlowTheme.of(context)
                                     .primaryBackground,
-                                fontSize: 16.0,
+                                fontSize: 16,
                                 letterSpacing: 0.0,
                                 useGoogleFonts: GoogleFonts.asMap().containsKey(
                                     FlutterFlowTheme.of(context)
                                         .bodySmallFamily),
                               ),
-                          elevation: 0.0,
-                          borderSide: const BorderSide(
+                          elevation: 0,
+                          borderSide: BorderSide(
                             color: Colors.transparent,
-                            width: 1.0,
+                            width: 1,
                           ),
-                          borderRadius: BorderRadius.circular(32.0),
+                          borderRadius: BorderRadius.circular(32),
                         ),
                       ),
                     ),

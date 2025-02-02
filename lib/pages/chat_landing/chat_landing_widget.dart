@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'chat_landing_model.dart';
 export 'chat_landing_model.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 class ChatLandingWidget extends StatefulWidget {
   const ChatLandingWidget({super.key});
@@ -42,6 +43,7 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController subjectController = TextEditingController();
     return StreamBuilder<List<ChatsRecord>>(
       stream: queryChatsRecord(
         queryBuilder: (chatsRecord) => chatsRecord
@@ -98,8 +100,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                 ),
                 actions: [
                   Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 0.0, 20.0, 0.0),
                     child: InkWell(
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
@@ -129,11 +131,38 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                   alignment: const AlignmentDirectional(1.0, 1.0),
                   children: [
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          20.0, 0.0, 20.0, 0.0),
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  controller: subjectController,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Subject',
+                                  ),
+                                ),
+                              ),
+                              ElevatedButton(
+                                onPressed: () async {
+                                  final poemFlow = FirebaseFunctions.instance
+                                      .httpsCallable('generatePoem');
+                                  final response = await poemFlow
+                                      .call(subjectController.text.trim());
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content:
+                                            Text(response.data.toString())),
+                                  );
+                                },
+                                child: const Text('Compose a poem'),
+                              ),
+                            ],
+                          ),
                           Expanded(
                             child: SingleChildScrollView(
                               child: Column(
@@ -315,7 +344,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(15.0),
+                                                padding:
+                                                    const EdgeInsets.all(15.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -326,11 +356,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
+                                                              .fromSTEB(10.0,
+                                                              0.0, 10.0, 0.0),
                                                       child: AutoSizeText(
                                                         'Data extraction',
                                                         textAlign:
@@ -365,7 +392,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                     Expanded(
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(5.0),
+                                                            const EdgeInsets
+                                                                .all(5.0),
                                                         child: ClipRRect(
                                                           borderRadius:
                                                               BorderRadius
@@ -378,8 +406,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                  ].divide(
-                                                      const SizedBox(height: 15.0)),
+                                                  ].divide(const SizedBox(
+                                                      height: 15.0)),
                                                 ),
                                               ),
                                             ),
@@ -473,7 +501,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(15.0),
+                                                padding:
+                                                    const EdgeInsets.all(15.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -484,11 +513,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
+                                                              .fromSTEB(10.0,
+                                                              0.0, 10.0, 0.0),
                                                       child: AutoSizeText(
                                                         'Mental wellbeing',
                                                         textAlign:
@@ -531,8 +557,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                  ].divide(
-                                                      const SizedBox(height: 15.0)),
+                                                  ].divide(const SizedBox(
+                                                      height: 15.0)),
                                                 ),
                                               ),
                                             ),
@@ -591,7 +617,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(15.0),
+                                                padding:
+                                                    const EdgeInsets.all(15.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -633,8 +660,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                  ].divide(
-                                                      const SizedBox(height: 15.0)),
+                                                  ].divide(const SizedBox(
+                                                      height: 15.0)),
                                                 ),
                                               ),
                                             ),
@@ -698,7 +725,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(15.0),
+                                                padding:
+                                                    const EdgeInsets.all(15.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -709,11 +737,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
+                                                              .fromSTEB(10.0,
+                                                              0.0, 10.0, 0.0),
                                                       child: AutoSizeText(
                                                         'Sleep',
                                                         textAlign:
@@ -748,7 +773,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                     Expanded(
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(8.0),
+                                                            const EdgeInsets
+                                                                .all(8.0),
                                                         child: ClipRRect(
                                                           borderRadius:
                                                               BorderRadius
@@ -761,8 +787,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                  ].divide(
-                                                      const SizedBox(height: 15.0)),
+                                                  ].divide(const SizedBox(
+                                                      height: 15.0)),
                                                 ),
                                               ),
                                             ),
@@ -822,7 +848,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(15.0),
+                                                padding:
+                                                    const EdgeInsets.all(15.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -856,7 +883,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                     Expanded(
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(8.0),
+                                                            const EdgeInsets
+                                                                .all(8.0),
                                                         child: ClipRRect(
                                                           borderRadius:
                                                               BorderRadius
@@ -869,8 +897,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                  ].divide(
-                                                      const SizedBox(height: 15.0)),
+                                                  ].divide(const SizedBox(
+                                                      height: 15.0)),
                                                 ),
                                               ),
                                             ),
@@ -937,7 +965,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(15.0),
+                                                padding:
+                                                    const EdgeInsets.all(15.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -948,11 +977,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                     Padding(
                                                       padding:
                                                           const EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  10.0,
-                                                                  0.0,
-                                                                  10.0,
-                                                                  0.0),
+                                                              .fromSTEB(10.0,
+                                                              0.0, 10.0, 0.0),
                                                       child: AutoSizeText(
                                                         'Weight loss',
                                                         textAlign:
@@ -987,7 +1013,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                     Expanded(
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(5.0),
+                                                            const EdgeInsets
+                                                                .all(5.0),
                                                         child: ClipRRect(
                                                           borderRadius:
                                                               BorderRadius
@@ -1000,8 +1027,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                  ].divide(
-                                                      const SizedBox(height: 15.0)),
+                                                  ].divide(const SizedBox(
+                                                      height: 15.0)),
                                                 ),
                                               ),
                                             ),
@@ -1060,7 +1087,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                 ),
                                               ),
                                               child: Padding(
-                                                padding: const EdgeInsets.all(15.0),
+                                                padding:
+                                                    const EdgeInsets.all(15.0),
                                                 child: Column(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -1094,7 +1122,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                     Expanded(
                                                       child: Padding(
                                                         padding:
-                                                            const EdgeInsets.all(3.0),
+                                                            const EdgeInsets
+                                                                .all(3.0),
                                                         child: ClipRRect(
                                                           borderRadius:
                                                               BorderRadius
@@ -1107,8 +1136,8 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                         ),
                                                       ),
                                                     ),
-                                                  ].divide(
-                                                      const SizedBox(height: 15.0)),
+                                                  ].divide(const SizedBox(
+                                                      height: 15.0)),
                                                 ),
                                               ),
                                             ),

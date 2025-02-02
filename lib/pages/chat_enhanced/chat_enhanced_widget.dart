@@ -1,6 +1,8 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 import '/components/chat_bubbles/chat_bubbles_widget.dart';
 import '/components/prompt_suggestion_container/prompt_suggestion_container_widget.dart';
 import '/components/select_age/select_age_widget.dart';
@@ -9,16 +11,22 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'dart:math';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:record/record.dart';
+
 import 'chat_enhanced_model.dart';
 export 'chat_enhanced_model.dart';
 
@@ -60,14 +68,14 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
       logFirebaseEvent('CHAT_ENHANCED_chat_enhanced_ON_INIT_STAT');
       logFirebaseEvent('chat_enhanced_update_page_state');
       _model.promptSuggestions =
-          widget.promptSuggestions!.toList().cast<String>();
-      _model.progress = widget.chat?.step;
-      _model.intent = widget.chat?.intent;
+          widget!.promptSuggestions!.toList().cast<String>();
+      _model.progress = widget!.chat?.step;
+      _model.intent = widget!.chat?.intent;
       safeSetState(() {});
-      if (widget.newChat!) {
+      if (widget!.newChat!) {
         logFirebaseEvent('chat_enhanced_backend_call');
 
-        await MessagesRecord.createDoc(widget.chat!.reference)
+        await MessagesRecord.createDoc(widget!.chat!.reference)
             .set(createMessagesRecordData(
           timestamp: getCurrentTimestamp,
           firstMessage: false,
@@ -84,7 +92,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
         ));
         logFirebaseEvent('chat_enhanced_backend_call');
 
-        await MessagesRecord.createDoc(widget.chat!.reference)
+        await MessagesRecord.createDoc(widget!.chat!.reference)
             .set(createMessagesRecordData(
           timestamp: getCurrentTimestamp,
           firstMessage: false,
@@ -121,8 +129,8 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 410.0.ms,
-            begin: const Offset(0.0, 17.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 17.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -134,8 +142,8 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
             curve: Curves.easeInOut,
             delay: 0.0.ms,
             duration: 530.0.ms,
-            begin: const Offset(0.0, 19.0),
-            end: const Offset(0.0, 0.0),
+            begin: Offset(0.0, 19.0),
+            end: Offset(0.0, 0.0),
           ),
         ],
       ),
@@ -161,7 +169,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
   Widget build(BuildContext context) {
     return StreamBuilder<List<MessagesRecord>>(
       stream: queryMessagesRecord(
-        parent: widget.chat?.reference,
+        parent: widget!.chat?.reference,
         queryBuilder: (messagesRecord) => messagesRecord
             .where(
               'userRef',
@@ -176,8 +184,8 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
             backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
             body: Center(
               child: SizedBox(
-                width: 50.0,
-                height: 50.0,
+                width: 50,
+                height: 50,
                 child: CircularProgressIndicator(
                   valueColor: AlwaysStoppedAnimation<Color>(
                     FlutterFlowTheme.of(context).primary,
@@ -215,21 +223,21 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                 child: Icon(
                   Icons.chevron_left,
                   color: FlutterFlowTheme.of(context).secondaryText,
-                  size: 22.0,
+                  size: 22,
                 ),
               ),
               title: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   StreamBuilder<ChatsRecord>(
-                    stream: ChatsRecord.getDocument(widget.chat!.reference),
+                    stream: ChatsRecord.getDocument(widget!.chat!.reference),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
                         return Center(
                           child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
+                            width: 50,
+                            height: 50,
                             child: CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation<Color>(
                                 FlutterFlowTheme.of(context).primary,
@@ -246,7 +254,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily:
                                   FlutterFlowTheme.of(context).bodyMediumFamily,
-                              fontSize: 14.0,
+                              fontSize: 14,
                               letterSpacing: 0.0,
                               useGoogleFonts: GoogleFonts.asMap().containsKey(
                                   FlutterFlowTheme.of(context)
@@ -263,7 +271,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                       minute: false,
                     ),
                     controller: _model.timerController,
-                    updateStateInterval: const Duration(milliseconds: 100),
+                    updateStateInterval: Duration(milliseconds: 100),
                     onChanged: (value, displayTime, shouldUpdate) {
                       _model.timerMilliseconds = value;
                       _model.timerValue = displayTime;
@@ -283,16 +291,16 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
               ),
               actions: [
                 Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 20.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
                   child: StreamBuilder<ChatsRecord>(
-                    stream: ChatsRecord.getDocument(widget.chat!.reference),
+                    stream: ChatsRecord.getDocument(widget!.chat!.reference),
                     builder: (context, snapshot) {
                       // Customize what your widget looks like when it's loading.
                       if (!snapshot.hasData) {
                         return Center(
                           child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
+                            width: 50,
+                            height: 50,
                             child: CircularProgressIndicator(
                               valueColor: AlwaysStoppedAnimation<Color>(
                                 FlutterFlowTheme.of(context).primary,
@@ -312,23 +320,23 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                         onTap: () async {
                           logFirebaseEvent(
                               'CHAT_ENHANCED_PAGE_Icon_dky46fdh_ON_TAP');
-                          var shouldSetState = false;
+                          var _shouldSetState = false;
                           logFirebaseEvent('Icon_alert_dialog');
                           var confirmDialogResponse = await showDialog<bool>(
                                 context: context,
                                 builder: (alertDialogContext) {
                                   return AlertDialog(
-                                    content: const Text('Start a new chat?'),
+                                    content: Text('Start a new chat?'),
                                     actions: [
                                       TextButton(
                                         onPressed: () => Navigator.pop(
                                             alertDialogContext, false),
-                                        child: const Text('No'),
+                                        child: Text('No'),
                                       ),
                                       TextButton(
                                         onPressed: () => Navigator.pop(
                                             alertDialogContext, true),
-                                        child: const Text('Yes'),
+                                        child: Text('Yes'),
                                       ),
                                     ],
                                   );
@@ -345,7 +353,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                               userRef: currentUserReference,
                               timestamp: getCurrentTimestamp,
                               title: iconChatsRecord.title,
-                              category: widget.category,
+                              category: widget!.category,
                               step: ProcessStep.step_01_intro,
                             ));
                             _model.newChatRef = ChatsRecord.getDocumentFromData(
@@ -353,11 +361,11 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                   userRef: currentUserReference,
                                   timestamp: getCurrentTimestamp,
                                   title: iconChatsRecord.title,
-                                  category: widget.category,
+                                  category: widget!.category,
                                   step: ProcessStep.step_01_intro,
                                 ),
                                 chatsRecordReference);
-                            shouldSetState = true;
+                            _shouldSetState = true;
                             logFirebaseEvent('Icon_backend_call');
 
                             await MessagesRecord.createDoc(
@@ -390,7 +398,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                 ),
                                 'promptSuggestions': serializeParam(
                                   functions
-                                      .defaultSuggetions(widget.category!),
+                                      .defaultSuggetions(widget!.category!),
                                   ParamType.String,
                                   isList: true,
                                 ),
@@ -408,19 +416,19 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                               },
                             );
 
-                            if (shouldSetState) safeSetState(() {});
+                            if (_shouldSetState) safeSetState(() {});
                             return;
                           } else {
-                            if (shouldSetState) safeSetState(() {});
+                            if (_shouldSetState) safeSetState(() {});
                             return;
                           }
 
-                          if (shouldSetState) safeSetState(() {});
+                          if (_shouldSetState) safeSetState(() {});
                         },
                         child: Icon(
                           Icons.restart_alt,
                           color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 22.0,
+                          size: 22,
                         ),
                       );
                     },
@@ -428,21 +436,21 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                 ),
               ],
               centerTitle: true,
-              elevation: 0.0,
+              elevation: 0,
             ),
             body: SafeArea(
               top: true,
               child: Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 20.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 20),
                 child: StreamBuilder<ChatsRecord>(
-                  stream: ChatsRecord.getDocument(widget.chat!.reference),
+                  stream: ChatsRecord.getDocument(widget!.chat!.reference),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
                       return Center(
                         child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
+                          width: 50,
+                          height: 50,
                           child: CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation<Color>(
                               FlutterFlowTheme.of(context).primary,
@@ -461,22 +469,22 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                         Expanded(
                           child: Container(
                             width: double.infinity,
-                            height: 100.0,
-                            constraints: const BoxConstraints(
-                              maxWidth: 700.0,
+                            height: 100,
+                            constraints: BoxConstraints(
+                              maxWidth: 700,
                             ),
-                            decoration: const BoxDecoration(),
+                            decoration: BoxDecoration(),
                             child: Builder(
                               builder: (context) {
                                 final message =
                                     chatEnhancedMessagesRecordList.toList();
 
                                 return ListView.builder(
-                                  padding: const EdgeInsets.fromLTRB(
+                                  padding: EdgeInsets.fromLTRB(
                                     0,
                                     0,
                                     0,
-                                    20.0,
+                                    20,
                                   ),
                                   reverse: true,
                                   scrollDirection: Axis.vertical,
@@ -491,7 +499,6 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                       onTap: () async {
                                         logFirebaseEvent(
                                             'CHAT_ENHANCED_Container_m6z9al1l_ON_TAP');
-                                        var shouldSetState = false;
                                         if (messageItem.user ==
                                             User.suggestion) {
                                           if (_model.progress ==
@@ -500,7 +507,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                                 'chat_bubbles_backend_call');
 
                                             await MessagesRecord.createDoc(
-                                                    widget.chat!.reference)
+                                                    widget!.chat!.reference)
                                                 .set(createMessagesRecordData(
                                               timestamp: getCurrentTimestamp,
                                               firstMessage: false,
@@ -530,7 +537,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                                   'chat_bubbles_backend_call');
 
                                               await MessagesRecord.createDoc(
-                                                      widget.chat!.reference)
+                                                      widget!.chat!.reference)
                                                   .set(createMessagesRecordData(
                                                 timestamp: getCurrentTimestamp,
                                                 firstMessage: false,
@@ -561,198 +568,17 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                             logFirebaseEvent(
                                                 'chat_bubbles_backend_call');
 
-                                            await widget.chat!.reference
+                                            await widget!.chat!.reference
                                                 .update(createChatsRecordData(
                                               step: ProcessStep
                                                   .step_02_suggestions,
                                             ));
-                                            if (shouldSetState) {
-                                              safeSetState(() {});
-                                            }
                                             return;
                                           } else if (_model.progress ==
                                               ProcessStep.step_02_suggestions) {
-                                            logFirebaseEvent(
-                                                'chat_bubbles_update_page_state');
-                                            _model.intent = messageItem.message;
-                                            safeSetState(() {});
-                                            logFirebaseEvent(
-                                                'chat_bubbles_backend_call');
-
-                                            await widget.chat!.reference
-                                                .update(createChatsRecordData(
-                                              intent: messageItem.message,
-                                            ));
-                                            if (valueOrDefault<bool>(
-                                                currentUserDocument
-                                                    ?.trackerLinked,
-                                                false)) {
-                                              logFirebaseEvent(
-                                                  'chat_bubbles_action_block');
-                                              await _model
-                                                  .linkTrackerLinked(context);
-                                              if (currentUserDocument?.gender !=
-                                                  null) {
-                                                logFirebaseEvent(
-                                                    'chat_bubbles_action_block');
-                                                await _model
-                                                    .selectGenderSet(context);
-                                                if ((valueOrDefault(
-                                                            currentUserDocument
-                                                                ?.age,
-                                                            0.0) !=
-                                                        null) &&
-                                                    (valueOrDefault(
-                                                            currentUserDocument
-                                                                ?.age,
-                                                            0.0) >
-                                                        0.0)) {
-                                                  logFirebaseEvent(
-                                                      'chat_bubbles_action_block');
-                                                  await _model
-                                                      .selectAgeSet(context);
-                                                } else {
-                                                  logFirebaseEvent(
-                                                      'chat_bubbles_action_block');
-                                                  await _model
-                                                      .selectAgeUnset(context);
-                                                  if (shouldSetState) {
-                                                    safeSetState(() {});
-                                                  }
-                                                  return;
-                                                }
-                                              } else {
-                                                logFirebaseEvent(
-                                                    'chat_bubbles_action_block');
-                                                await _model
-                                                    .selectGenderUnset(context);
-                                                safeSetState(() {});
-                                                if (shouldSetState) {
-                                                  safeSetState(() {});
-                                                }
-                                                return;
-                                              }
-                                            } else {
-                                              logFirebaseEvent(
-                                                  'chat_bubbles_action_block');
-                                              await _model.linkTrackerNotLinked(
-                                                  context);
-                                              if (shouldSetState) {
-                                                safeSetState(() {});
-                                              }
-                                              return;
-                                            }
                                           } else if (_model.progress ==
                                               ProcessStep
                                                   .step_03_link_tracker) {
-                                            logFirebaseEvent(
-                                                'chat_bubbles_custom_action');
-                                            _model.appleHealthSuccess =
-                                                await actions
-                                                    .connectAppleHealth(
-                                              (currentUserDocument
-                                                          ?.dataTypesToDownload
-                                                          .toList() ??
-                                                      [])
-                                                  .toList(),
-                                            );
-                                            shouldSetState = true;
-                                            if (_model.appleHealthSuccess!) {
-                                              logFirebaseEvent(
-                                                  'chat_bubbles_backend_call');
-
-                                              await currentUserReference!
-                                                  .update(createUsersRecordData(
-                                                trackerLinked: true,
-                                                appleHealthLinked: true,
-                                              ));
-                                            } else {
-                                              logFirebaseEvent(
-                                                  'chat_bubbles_show_snack_bar');
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                    'Connection unsuccessful. Please try again.',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .bodyMediumFamily,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .info,
-                                                          letterSpacing: 0.0,
-                                                          useGoogleFonts: GoogleFonts
-                                                                  .asMap()
-                                                              .containsKey(
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMediumFamily),
-                                                        ),
-                                                  ),
-                                                  duration: const Duration(
-                                                      milliseconds: 2000),
-                                                  backgroundColor:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .secondaryText,
-                                                ),
-                                              );
-                                              if (shouldSetState) {
-                                                safeSetState(() {});
-                                              }
-                                              return;
-                                            }
-
-                                            logFirebaseEvent(
-                                                'chat_bubbles_action_block');
-                                            await _model
-                                                .linkTrackerLinked(context);
-                                            if (currentUserDocument?.gender !=
-                                                null) {
-                                              logFirebaseEvent(
-                                                  'chat_bubbles_action_block');
-                                              await _model
-                                                  .selectGenderSet(context);
-                                              if ((valueOrDefault(
-                                                          currentUserDocument
-                                                              ?.age,
-                                                          0.0) !=
-                                                      null) &&
-                                                  (valueOrDefault(
-                                                          currentUserDocument
-                                                              ?.age,
-                                                          0.0) >
-                                                      0.0)) {
-                                                logFirebaseEvent(
-                                                    'chat_bubbles_action_block');
-                                                await _model
-                                                    .selectAgeSet(context);
-                                              } else {
-                                                logFirebaseEvent(
-                                                    'chat_bubbles_action_block');
-                                                await _model
-                                                    .selectAgeUnset(context);
-                                                if (shouldSetState) {
-                                                  safeSetState(() {});
-                                                }
-                                                return;
-                                              }
-                                            } else {
-                                              logFirebaseEvent(
-                                                  'chat_bubbles_action_block');
-                                              await _model
-                                                  .selectGenderUnset(context);
-                                              safeSetState(() {});
-                                              if (shouldSetState) {
-                                                safeSetState(() {});
-                                              }
-                                              return;
-                                            }
                                           } else if (_model.progress ==
                                               ProcessStep
                                                   .step_05b_gender_selection) {
@@ -787,7 +613,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                                             '_backend_call');
 
                                                         await MessagesRecord
-                                                                .createDoc(widget
+                                                                .createDoc(widget!
                                                                     .chat!
                                                                     .reference)
                                                             .set(
@@ -819,7 +645,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                                         logFirebaseEvent(
                                                             '_backend_call');
 
-                                                        await widget
+                                                        await widget!
                                                             .chat!.reference
                                                             .update(
                                                                 createChatsRecordData(
@@ -853,9 +679,6 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                                   'chat_bubbles_action_block');
                                               await _model
                                                   .selectAgeUnset(context);
-                                              if (shouldSetState) {
-                                                safeSetState(() {});
-                                              }
                                               return;
                                             }
                                           } else if (_model.progress ==
@@ -892,7 +715,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                                             '_backend_call');
 
                                                         await MessagesRecord
-                                                                .createDoc(widget
+                                                                .createDoc(widget!
                                                                     .chat!
                                                                     .reference)
                                                             .set(
@@ -934,7 +757,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                                         logFirebaseEvent(
                                                             '_backend_call');
 
-                                                        await widget
+                                                        await widget!
                                                             .chat!.reference
                                                             .update(
                                                                 createChatsRecordData(
@@ -949,9 +772,6 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                             ).then(
                                                 (value) => safeSetState(() {}));
                                           } else {
-                                            if (shouldSetState) {
-                                              safeSetState(() {});
-                                            }
                                             return;
                                           }
 
@@ -959,7 +779,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                               'chat_bubbles_backend_call');
 
                                           await MessagesRecord.createDoc(
-                                                  widget.chat!.reference)
+                                                  widget!.chat!.reference)
                                               .set(createMessagesRecordData(
                                             timestamp: getCurrentTimestamp,
                                             firstMessage: false,
@@ -1005,14 +825,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                               ProcessStep.step_07_done;
                                           _model.awaitingReply = false;
                                         } else {
-                                          if (shouldSetState) {
-                                            safeSetState(() {});
-                                          }
                                           return;
-                                        }
-
-                                        if (shouldSetState) {
-                                          safeSetState(() {});
                                         }
                                       },
                                       child: ChatBubblesWidget(
@@ -1033,32 +846,31 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                         ),
                         if (_model.awaitingReply)
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 5.0, 0.0, 0.0),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 0),
                             child: Container(
                               width: double.infinity,
-                              height: 50.0,
-                              constraints: const BoxConstraints(
-                                maxWidth: 700.0,
+                              height: 50,
+                              constraints: BoxConstraints(
+                                maxWidth: 700,
                               ),
-                              decoration: const BoxDecoration(),
+                              decoration: BoxDecoration(),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 5.0, 0.0),
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0, 0, 5, 0),
                                     child: Icon(
                                       Icons.auto_awesome,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
+                                      size: 24,
                                     ),
                                   ),
                                   Lottie.asset(
                                     'assets/jsons/Animation_-_1711708366598.json',
-                                    width: 38.0,
-                                    height: 38.0,
+                                    width: 38,
+                                    height: 38,
                                     fit: BoxFit.fitHeight,
                                     animate: true,
                                   ),
@@ -1068,18 +880,18 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                           ),
                         if (!_model.awaitingReply &&
                             (_model.promptSuggestions.isNotEmpty) &&
-                            (widget.newChat! ||
+                            (widget!.newChat! ||
                                 _model.showPromptSuggestions) &&
                             (_model.progress == ProcessStep.step_07_done))
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 15.0, 0.0, 15.0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 15, 0, 15),
                             child: Container(
-                              constraints: const BoxConstraints(
-                                maxWidth: 700.0,
+                              constraints: BoxConstraints(
+                                maxWidth: 700,
                               ),
-                              decoration: const BoxDecoration(),
-                              alignment: const AlignmentDirectional(-1.0, 0.0),
+                              decoration: BoxDecoration(),
+                              alignment: AlignmentDirectional(-1, 0),
                               child: Builder(
                                 builder: (context) {
                                   final promptSuggestion =
@@ -1147,7 +959,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                             });
                                           },
                                         );
-                                      }).divide(const SizedBox(width: 10.0)),
+                                      }).divide(SizedBox(width: 10)),
                                     ),
                                   );
                                 },
@@ -1156,8 +968,8 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                           ),
                         if (_model.progress == ProcessStep.step_07_done)
                           Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 15.0, 0.0, 0.0),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -1169,11 +981,10 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                     Flexible(
                                       child: Container(
                                         width: double.infinity,
-                                        height: 40.0,
-                                        decoration: const BoxDecoration(),
-                                        alignment:
-                                            const AlignmentDirectional(0.0, 0.0),
-                                        child: SizedBox(
+                                        height: 40,
+                                        decoration: BoxDecoration(),
+                                        alignment: AlignmentDirectional(0, 0),
+                                        child: Container(
                                           width: double.infinity,
                                           child: TextFormField(
                                             controller:
@@ -1234,30 +1045,30 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .lineColor,
-                                                  width: 1.0,
+                                                  width: 1,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(8),
                                               ),
                                               focusedBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .primary,
-                                                  width: 1.0,
+                                                  width: 1,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(8),
                                               ),
                                               errorBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .error,
-                                                  width: 1.0,
+                                                  width: 1,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(8),
                                               ),
                                               focusedErrorBorder:
                                                   OutlineInputBorder(
@@ -1265,19 +1076,18 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .error,
-                                                  width: 1.0,
+                                                  width: 1,
                                                 ),
                                                 borderRadius:
-                                                    BorderRadius.circular(8.0),
+                                                    BorderRadius.circular(8),
                                               ),
                                               filled: true,
                                               fillColor:
                                                   FlutterFlowTheme.of(context)
                                                       .primaryBackground,
                                               contentPadding:
-                                                  const EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          10.0, 5.0, 10.0, 5.0),
+                                                  EdgeInsetsDirectional
+                                                      .fromSTEB(10, 5, 10, 5),
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -1286,7 +1096,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                                       FlutterFlowTheme.of(
                                                               context)
                                                           .bodyMediumFamily,
-                                                  fontSize: 14.0,
+                                                  fontSize: 14,
                                                   letterSpacing: 0.0,
                                                   useGoogleFonts: GoogleFonts
                                                           .asMap()
@@ -1384,7 +1194,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                         Icons.camera_alt_outlined,
                                         color: FlutterFlowTheme.of(context)
                                             .secondary,
-                                        size: 24.0,
+                                        size: 24,
                                       ),
                                     ),
                                     Builder(
@@ -1416,7 +1226,7 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
-                                              size: 24.0,
+                                              size: 24,
                                             ),
                                           );
                                         } else {
@@ -1451,13 +1261,13 @@ class _ChatEnhancedWidgetState extends State<ChatEnhancedWidget>
                                               color:
                                                   FlutterFlowTheme.of(context)
                                                       .secondary,
-                                              size: 24.0,
+                                              size: 24,
                                             ),
                                           );
                                         }
                                       },
                                     ),
-                                  ].divide(const SizedBox(width: 15.0)),
+                                  ].divide(SizedBox(width: 15)),
                                 ),
                               ],
                             ),

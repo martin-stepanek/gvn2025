@@ -2,13 +2,30 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
+import '/components/chat_bubbles/chat_bubbles_widget.dart';
+import '/components/prompt_suggestion_container/prompt_suggestion_container_widget.dart';
+import '/components/select_age/select_age_widget.dart';
+import '/components/select_gender/select_gender_widget.dart';
+import '/flutter_flow/flutter_flow_animations.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
+import 'dart:math';
+import 'dart:ui';
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'chat_enhanced_widget.dart' show ChatEnhancedWidget;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 import 'package:record/record.dart';
 
 class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
@@ -67,8 +84,6 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
   FlutterFlowTimerController timerController =
       FlutterFlowTimerController(StopWatchTimer(mode: StopWatchMode.countUp));
 
-  // Stores action output result for [Custom Action - connectAppleHealth] action in chat_bubbles widget.
-  bool? appleHealthSuccess;
   // State field(s) for Prompt widget.
   FocusNode? promptFocusNode;
   TextEditingController? promptTextController;
@@ -155,10 +170,10 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
               : 'No previous message.'),
     );
 
-    if ((gptCheck.succeeded ?? true)) {
+    if ((gptCheck?.succeeded ?? true)) {
       if ((AzureGroup.aZcoachThreePointFiveCall
               .content(
-                (gptCheck.jsonBody ?? ''),
+                (gptCheck?.jsonBody ?? ''),
               )
               .toString()
               .trim()) ==
@@ -175,10 +190,10 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
             format: '###.#',
             locale: '',
           )} seconds. Total tokens used: ${AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                (gptCheck.jsonBody ?? ''),
+                (gptCheck?.jsonBody ?? ''),
               ).toString()}. Cost: \$${formatNumber(
             AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                  (gptCheck.jsonBody ?? ''),
+                  (gptCheck?.jsonBody ?? ''),
                 ) /
                 1000000 *
                 1.5,
@@ -191,18 +206,18 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
           include: false,
           secondsToGenerate: timerMilliseconds * 1000,
           costUsd: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                (gptCheck.jsonBody ?? ''),
+                (gptCheck?.jsonBody ?? ''),
               ) /
               1000000 *
               1.5,
           tokensTotal: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-            (gptCheck.jsonBody ?? ''),
+            (gptCheck?.jsonBody ?? ''),
           ),
           tokensPrompt: AzureGroup.aZcoachThreePointFiveCall.tokensPrompt(
-            (gptCheck.jsonBody ?? ''),
+            (gptCheck?.jsonBody ?? ''),
           ),
           tokensResponse: AzureGroup.aZcoachThreePointFiveCall.tokensCompletion(
-            (gptCheck.jsonBody ?? ''),
+            (gptCheck?.jsonBody ?? ''),
           ),
         ));
         logFirebaseEvent('submitPrompt_update_page_state');
@@ -215,7 +230,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
               widget!.category),
         );
 
-        if ((gptResponse.succeeded ?? true)) {
+        if ((gptResponse?.succeeded ?? true)) {
           logFirebaseEvent('submitPrompt_backend_call');
 
           var messagesRecordReference3 =
@@ -225,7 +240,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
             firstMessage: false,
             message: AzureGroup.aZcoachThreePointFiveCall
                 .content(
-                  (gptResponse.jsonBody ?? ''),
+                  (gptResponse?.jsonBody ?? ''),
                 )
                 .toString()
                 .trim(),
@@ -234,19 +249,19 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
             include: true,
             secondsToGenerate: (timerMilliseconds - (time!)) / 1000,
             costUsd: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                  (gptResponse.jsonBody ?? ''),
+                  (gptResponse?.jsonBody ?? ''),
                 ) /
                 1000000 *
                 1.5,
             tokensTotal: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ),
             tokensPrompt: AzureGroup.aZcoachThreePointFiveCall.tokensPrompt(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ),
             tokensResponse:
                 AzureGroup.aZcoachThreePointFiveCall.tokensCompletion(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ),
           ));
           coachResponse = MessagesRecord.getDocumentFromData(
@@ -255,7 +270,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
                 firstMessage: false,
                 message: AzureGroup.aZcoachThreePointFiveCall
                     .content(
-                      (gptResponse.jsonBody ?? ''),
+                      (gptResponse?.jsonBody ?? ''),
                     )
                     .toString()
                     .trim(),
@@ -264,19 +279,19 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
                 include: true,
                 secondsToGenerate: (timerMilliseconds - (time!)) / 1000,
                 costUsd: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                      (gptResponse.jsonBody ?? ''),
+                      (gptResponse?.jsonBody ?? ''),
                     ) /
                     1000000 *
                     1.5,
                 tokensTotal: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                  (gptResponse.jsonBody ?? ''),
+                  (gptResponse?.jsonBody ?? ''),
                 ),
                 tokensPrompt: AzureGroup.aZcoachThreePointFiveCall.tokensPrompt(
-                  (gptResponse.jsonBody ?? ''),
+                  (gptResponse?.jsonBody ?? ''),
                 ),
                 tokensResponse:
                     AzureGroup.aZcoachThreePointFiveCall.tokensCompletion(
-                  (gptResponse.jsonBody ?? ''),
+                  (gptResponse?.jsonBody ?? ''),
                 ),
               ),
               messagesRecordReference3);
@@ -292,10 +307,10 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
               format: '###.#',
               locale: '',
             )} seconds. Total tokens used: ${AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                  (gptResponse.jsonBody ?? ''),
+                  (gptResponse?.jsonBody ?? ''),
                 ).toString()}. Cost: \$${formatNumber(
               AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                    (gptResponse.jsonBody ?? ''),
+                    (gptResponse?.jsonBody ?? ''),
                   ) /
                   1000000 *
                   1.5,
@@ -308,33 +323,33 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
             include: false,
             secondsToGenerate: (timerMilliseconds - time!.toDouble()) / 1000,
             costUsd: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                  (gptResponse.jsonBody ?? ''),
+                  (gptResponse?.jsonBody ?? ''),
                 ) /
                 1000000 *
                 1.5,
             tokensTotal: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ),
             tokensPrompt: AzureGroup.aZcoachThreePointFiveCall.tokensPrompt(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ),
             tokensResponse:
                 AzureGroup.aZcoachThreePointFiveCall.tokensCompletion(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ),
           ));
           logFirebaseEvent('submitPrompt_backend_call');
           gptSuggestions = await AzureGroup.aZcoachThreePointFiveCall.call(
             messagesJson:
-                functions.generateSuggestionsPrompt(coachResponse.message),
+                functions.generateSuggestionsPrompt(coachResponse?.message),
           );
 
-          if ((gptSuggestions.succeeded ?? true)) {
+          if ((gptSuggestions?.succeeded ?? true)) {
             logFirebaseEvent('submitPrompt_update_page_state');
             promptSuggestions = functions
                 .getSuggestions(AzureGroup.aZcoachThreePointFiveCall
                     .content(
-                      (gptSuggestions.jsonBody ?? ''),
+                      (gptSuggestions?.jsonBody ?? ''),
                     )
                     .toString())!
                 .toList()
@@ -349,7 +364,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
               timestamp: getCurrentTimestamp,
               firstMessage: false,
               message:
-                  'GPT suggestions API error. Status code ${(gptSuggestions.statusCode ?? 200).toString()}',
+                  'GPT suggestions API error. Status code ${(gptSuggestions?.statusCode ?? 200).toString()}',
               user: User.system,
               userRef: currentUserReference,
               include: false,
@@ -368,7 +383,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
             timestamp: getCurrentTimestamp,
             firstMessage: false,
             message:
-                'GPT response API error. Status code ${(gptResponse.statusCode ?? 200).toString()}',
+                'GPT response API error. Status code ${(gptResponse?.statusCode ?? 200).toString()}',
             user: User.system,
             userRef: currentUserReference,
             include: false,
@@ -391,18 +406,18 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
           include: false,
           secondsToGenerate: timerMilliseconds * 1000,
           costUsd: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                (gptCheck.jsonBody ?? ''),
+                (gptCheck?.jsonBody ?? ''),
               ) /
               1000000 *
               1.5,
           tokensTotal: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-            (gptCheck.jsonBody ?? ''),
+            (gptCheck?.jsonBody ?? ''),
           ),
           tokensPrompt: AzureGroup.aZcoachThreePointFiveCall.tokensPrompt(
-            (gptCheck.jsonBody ?? ''),
+            (gptCheck?.jsonBody ?? ''),
           ),
           tokensResponse: AzureGroup.aZcoachThreePointFiveCall.tokensCompletion(
-            (gptCheck.jsonBody ?? ''),
+            (gptCheck?.jsonBody ?? ''),
           ),
         ));
         logFirebaseEvent('submitPrompt_backend_call');
@@ -412,11 +427,11 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
           timestamp: getCurrentTimestamp,
           firstMessage: false,
           message:
-              'Time elapsed: $timerValue seconds. Tokens used: ${AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                    (gptCheck.jsonBody ?? ''),
+              'Time elapsed: ${timerValue} seconds. Tokens used: ${AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
+                    (gptCheck?.jsonBody ?? ''),
                   ).toString()}. Cost: \$${formatNumber(
             AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                  (gptCheck.jsonBody ?? ''),
+                  (gptCheck?.jsonBody ?? ''),
                 ) /
                 1000000 *
                 1.5,
@@ -429,23 +444,23 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
           include: false,
           secondsToGenerate: timerMilliseconds * 1000,
           costUsd: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                (gptCheck.jsonBody ?? ''),
+                (gptCheck?.jsonBody ?? ''),
               ) /
               1000000 *
               1.5,
           tokensTotal: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-            (gptCheck.jsonBody ?? ''),
+            (gptCheck?.jsonBody ?? ''),
           ),
           tokensPrompt: AzureGroup.aZcoachThreePointFiveCall.tokensPrompt(
-            (gptCheck.jsonBody ?? ''),
+            (gptCheck?.jsonBody ?? ''),
           ),
           tokensResponse: AzureGroup.aZcoachThreePointFiveCall.tokensCompletion(
-            (gptCheck.jsonBody ?? ''),
+            (gptCheck?.jsonBody ?? ''),
           ),
         ));
         logFirebaseEvent('submitPrompt_backend_call');
 
-        await newMessage.reference.update(createMessagesRecordData(
+        await newMessage!.reference.update(createMessagesRecordData(
           include: false,
         ));
         logFirebaseEvent('submitPrompt_update_page_state');
@@ -462,7 +477,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
         timestamp: getCurrentTimestamp,
         firstMessage: false,
         message:
-            'GPT check API error. Status code ${(gptCheck.statusCode ?? 200).toString()}',
+            'GPT check API error. Status code ${(gptCheck?.statusCode ?? 200).toString()}',
         user: User.system,
         userRef: currentUserReference,
         include: false,
@@ -559,121 +574,6 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
     ));
   }
 
-  Future linkTrackerNotLinked(BuildContext context) async {
-    logFirebaseEvent('linkTrackerNotLinked_backend_call');
-
-    await MessagesRecord.createDoc(widget!.chat!.reference)
-        .set(createMessagesRecordData(
-      timestamp: getCurrentTimestamp,
-      firstMessage: false,
-      message:
-          'I see that you haven\'t linked your activity tracker yet. I need access to your data to give you enhanced insights. Please link your activity tracker to continue.',
-      user: User.coach,
-      userRef: currentUserReference,
-      include: true,
-      secondsToGenerate: 0.0,
-      costUsd: 0.0,
-      tokensTotal: 0,
-      tokensPrompt: 0,
-      tokensResponse: 0,
-    ));
-    logFirebaseEvent('linkTrackerNotLinked_backend_call');
-
-    await MessagesRecord.createDoc(widget!.chat!.reference)
-        .set(createMessagesRecordData(
-      timestamp: getCurrentTimestamp,
-      firstMessage: false,
-      message: 'Connect to Apple Health',
-      user: User.suggestion,
-      userRef: currentUserReference,
-      include: true,
-      secondsToGenerate: 0.0,
-      costUsd: 0.0,
-      tokensTotal: 0,
-      tokensPrompt: 0,
-      tokensResponse: 0,
-    ));
-    logFirebaseEvent('linkTrackerNotLinked_update_page_state');
-    promptSuggestions = [];
-    progress = ProcessStep.step_03_link_tracker;
-    logFirebaseEvent('linkTrackerNotLinked_backend_call');
-
-    await widget!.chat!.reference.update(createChatsRecordData(
-      step: ProcessStep.step_03_link_tracker,
-    ));
-  }
-
-  Future linkTrackerLinked(BuildContext context) async {
-    List<CombinedDataStruct>? appleHealthData2;
-
-    logFirebaseEvent('linkTrackerLinked_backend_call');
-
-    await MessagesRecord.createDoc(widget!.chat!.reference)
-        .set(createMessagesRecordData(
-      timestamp: getCurrentTimestamp,
-      firstMessage: false,
-      message: 'Getting your data from ${dateTimeFormat(
-        "yMMMd",
-        currentUserDocument!.lastDataFetch! >
-                dateTimeFromSecondsSinceEpoch(
-                    getCurrentTimestamp.secondsSinceEpoch - 5259487)
-            ? dateTimeFromSecondsSinceEpoch(
-                currentUserDocument!.lastDataFetch!.secondsSinceEpoch - 172800)
-            : dateTimeFromSecondsSinceEpoch(
-                getCurrentTimestamp.secondsSinceEpoch - 5259487),
-        locale: FFLocalizations.of(context).languageCode,
-      )} until today.',
-      user: User.coach,
-      userRef: currentUserReference,
-      include: true,
-      secondsToGenerate: 0.0,
-      costUsd: 0.0,
-      tokensTotal: 0,
-      tokensPrompt: 0,
-      tokensResponse: 0,
-    ));
-    logFirebaseEvent('linkTrackerLinked_update_page_state');
-    awaitingReply = true;
-    logFirebaseEvent('linkTrackerLinked_custom_action');
-    appleHealthData2 = await actions.getDataAppleHealth(
-      currentUserDocument!.lastDataFetch! >
-              dateTimeFromSecondsSinceEpoch(
-                  getCurrentTimestamp.secondsSinceEpoch - 5259487)
-          ? dateTimeFromSecondsSinceEpoch(
-              currentUserDocument!.lastDataFetch!.secondsSinceEpoch - 172800)
-          : dateTimeFromSecondsSinceEpoch(
-              getCurrentTimestamp.secondsSinceEpoch - 5259487),
-      getCurrentTimestamp,
-      valueOrDefault(currentUserDocument?.timezoneOffset, 0),
-      (currentUserDocument?.dataTypesToDownload.toList() ?? []).toList(),
-      currentUserReference!,
-      true,
-    );
-    logFirebaseEvent('linkTrackerLinked_backend_call');
-
-    await currentUserReference!.update(createUsersRecordData(
-      lastDataFetch: getCurrentTimestamp,
-    ));
-    logFirebaseEvent('linkTrackerLinked_update_page_state');
-    awaitingReply = false;
-    logFirebaseEvent('linkTrackerLinked_backend_call');
-
-    await MessagesRecord.createDoc(widget!.chat!.reference)
-        .set(createMessagesRecordData(
-      timestamp: getCurrentTimestamp,
-      firstMessage: false,
-      message: 'Data sync complete.',
-      user: User.coach,
-      userRef: currentUserReference,
-      include: true,
-      secondsToGenerate: 0.0,
-      costUsd: 0.0,
-      tokensTotal: 0,
-      tokensPrompt: 0,
-      tokensResponse: 0,
-    ));
-  }
-
   Future selectGenderSet(BuildContext context) async {
     logFirebaseEvent('selectGenderSet_backend_call');
 
@@ -735,7 +635,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
   }
 
   Future submitIntent(BuildContext context) async {
-    dynamic intentPrompt;
+    dynamic? intentPrompt;
     ApiCallResponse? gptResponse;
     ApiCallResponse? stepGoal;
     MessagesRecord? stepGoalValue;
@@ -752,13 +652,13 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
       messagesJson: intentPrompt,
     );
 
-    if ((gptResponse.succeeded ?? true)) {
+    if ((gptResponse?.succeeded ?? true)) {
       if (intent == 'Set a daily step goal for me.') {
         logFirebaseEvent('submitIntent_backend_call');
         stepGoal = await AzureGroup.aZcoachThreePointFiveCall.call(
           messagesJson: functions.getStepGoal(AzureGroup.aZcoachFourCall
               .content(
-                (gptResponse.jsonBody ?? ''),
+                (gptResponse?.jsonBody ?? ''),
               )
               .toString()
               .trim()),
@@ -773,7 +673,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
           firstMessage: false,
           message: AzureGroup.aZcoachThreePointFiveCall
               .content(
-                (stepGoal.jsonBody ?? ''),
+                (stepGoal?.jsonBody ?? ''),
               )
               .toString()
               .trim(),
@@ -782,18 +682,18 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
           include: false,
           secondsToGenerate: timerMilliseconds / 1000,
           costUsd: AzureGroup.aZcoachFourCall.tokensTotal(
-                (gptResponse.jsonBody ?? ''),
+                (gptResponse?.jsonBody ?? ''),
               ) /
               1000000 *
               1.5,
           tokensTotal: AzureGroup.aZcoachFourCall.tokensTotal(
-            (gptResponse.jsonBody ?? ''),
+            (gptResponse?.jsonBody ?? ''),
           ),
           tokensPrompt: AzureGroup.aZcoachFourCall.tokensPrompt(
-            (gptResponse.jsonBody ?? ''),
+            (gptResponse?.jsonBody ?? ''),
           ),
           tokensResponse: AzureGroup.aZcoachFourCall.tokensCompletion(
-            (gptResponse.jsonBody ?? ''),
+            (gptResponse?.jsonBody ?? ''),
           ),
         ));
         stepGoalValue = MessagesRecord.getDocumentFromData(
@@ -802,7 +702,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
               firstMessage: false,
               message: AzureGroup.aZcoachThreePointFiveCall
                   .content(
-                    (stepGoal.jsonBody ?? ''),
+                    (stepGoal?.jsonBody ?? ''),
                   )
                   .toString()
                   .trim(),
@@ -811,18 +711,18 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
               include: false,
               secondsToGenerate: timerMilliseconds / 1000,
               costUsd: AzureGroup.aZcoachFourCall.tokensTotal(
-                    (gptResponse.jsonBody ?? ''),
+                    (gptResponse?.jsonBody ?? ''),
                   ) /
                   1000000 *
                   1.5,
               tokensTotal: AzureGroup.aZcoachFourCall.tokensTotal(
-                (gptResponse.jsonBody ?? ''),
+                (gptResponse?.jsonBody ?? ''),
               ),
               tokensPrompt: AzureGroup.aZcoachFourCall.tokensPrompt(
-                (gptResponse.jsonBody ?? ''),
+                (gptResponse?.jsonBody ?? ''),
               ),
               tokensResponse: AzureGroup.aZcoachFourCall.tokensCompletion(
-                (gptResponse.jsonBody ?? ''),
+                (gptResponse?.jsonBody ?? ''),
               ),
             ),
             messagesRecordReference1);
@@ -836,7 +736,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
         firstMessage: false,
         message: AzureGroup.aZcoachFourCall
             .content(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             )
             .toString()
             .trim(),
@@ -845,18 +745,18 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
         include: false,
         secondsToGenerate: timerMilliseconds / 1000,
         costUsd: AzureGroup.aZcoachFourCall.tokensTotal(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ) /
             1000000 *
             1.5,
         tokensTotal: AzureGroup.aZcoachFourCall.tokensTotal(
-          (gptResponse.jsonBody ?? ''),
+          (gptResponse?.jsonBody ?? ''),
         ),
         tokensPrompt: AzureGroup.aZcoachFourCall.tokensPrompt(
-          (gptResponse.jsonBody ?? ''),
+          (gptResponse?.jsonBody ?? ''),
         ),
         tokensResponse: AzureGroup.aZcoachFourCall.tokensCompletion(
-          (gptResponse.jsonBody ?? ''),
+          (gptResponse?.jsonBody ?? ''),
         ),
       ));
       coachResponse = MessagesRecord.getDocumentFromData(
@@ -865,7 +765,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
             firstMessage: false,
             message: AzureGroup.aZcoachFourCall
                 .content(
-                  (gptResponse.jsonBody ?? ''),
+                  (gptResponse?.jsonBody ?? ''),
                 )
                 .toString()
                 .trim(),
@@ -874,18 +774,18 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
             include: false,
             secondsToGenerate: timerMilliseconds / 1000,
             costUsd: AzureGroup.aZcoachFourCall.tokensTotal(
-                  (gptResponse.jsonBody ?? ''),
+                  (gptResponse?.jsonBody ?? ''),
                 ) /
                 1000000 *
                 1.5,
             tokensTotal: AzureGroup.aZcoachFourCall.tokensTotal(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ),
             tokensPrompt: AzureGroup.aZcoachFourCall.tokensPrompt(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ),
             tokensResponse: AzureGroup.aZcoachFourCall.tokensCompletion(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ),
           ),
           messagesRecordReference2);
@@ -901,10 +801,10 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
           format: '###.#',
           locale: '',
         )} seconds. Total tokens used: ${AzureGroup.aZcoachFourCall.tokensTotal(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ).toString()}. Cost: \$${formatNumber(
           AzureGroup.aZcoachFourCall.tokensTotal(
-                (gptResponse.jsonBody ?? ''),
+                (gptResponse?.jsonBody ?? ''),
               ) /
               1000000 *
               1.5,
@@ -917,18 +817,18 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
         include: false,
         secondsToGenerate: timerMilliseconds / 1000,
         costUsd: AzureGroup.aZcoachFourCall.tokensTotal(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ) /
             1000000 *
             1.5,
         tokensTotal: AzureGroup.aZcoachFourCall.tokensTotal(
-          (gptResponse.jsonBody ?? ''),
+          (gptResponse?.jsonBody ?? ''),
         ),
         tokensPrompt: AzureGroup.aZcoachFourCall.tokensPrompt(
-          (gptResponse.jsonBody ?? ''),
+          (gptResponse?.jsonBody ?? ''),
         ),
         tokensResponse: AzureGroup.aZcoachFourCall.tokensCompletion(
-          (gptResponse.jsonBody ?? ''),
+          (gptResponse?.jsonBody ?? ''),
         ),
       ));
       logFirebaseEvent('submitIntent_backend_call');
@@ -944,18 +844,18 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
         include: false,
         secondsToGenerate: timerMilliseconds / 1000,
         costUsd: AzureGroup.aZcoachFourCall.tokensTotal(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ) /
             1000000 *
             1.5,
         tokensTotal: AzureGroup.aZcoachFourCall.tokensTotal(
-          (gptResponse.jsonBody ?? ''),
+          (gptResponse?.jsonBody ?? ''),
         ),
         tokensPrompt: AzureGroup.aZcoachFourCall.tokensPrompt(
-          (gptResponse.jsonBody ?? ''),
+          (gptResponse?.jsonBody ?? ''),
         ),
         tokensResponse: AzureGroup.aZcoachFourCall.tokensCompletion(
-          (gptResponse.jsonBody ?? ''),
+          (gptResponse?.jsonBody ?? ''),
         ),
       ));
       chart = MessagesRecord.getDocumentFromData(
@@ -968,34 +868,34 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
             include: false,
             secondsToGenerate: timerMilliseconds / 1000,
             costUsd: AzureGroup.aZcoachFourCall.tokensTotal(
-                  (gptResponse.jsonBody ?? ''),
+                  (gptResponse?.jsonBody ?? ''),
                 ) /
                 1000000 *
                 1.5,
             tokensTotal: AzureGroup.aZcoachFourCall.tokensTotal(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ),
             tokensPrompt: AzureGroup.aZcoachFourCall.tokensPrompt(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ),
             tokensResponse: AzureGroup.aZcoachFourCall.tokensCompletion(
-              (gptResponse.jsonBody ?? ''),
+              (gptResponse?.jsonBody ?? ''),
             ),
           ),
           messagesRecordReference4);
       logFirebaseEvent('submitIntent_backend_call');
       gptSuggestions = await AzureGroup.aZcoachThreePointFiveCall.call(
         messagesJson:
-            functions.generateSuggestionsPrompt(coachResponse.message),
+            functions.generateSuggestionsPrompt(coachResponse?.message),
       );
 
-      if ((gptSuggestions.succeeded ?? true)) {
+      if ((gptSuggestions?.succeeded ?? true)) {
         logFirebaseEvent('submitIntent_update_page_state');
         showPromptSuggestions = true;
         promptSuggestions = functions
             .getSuggestions(AzureGroup.aZcoachThreePointFiveCall
                 .content(
-                  (gptSuggestions.jsonBody ?? ''),
+                  (gptSuggestions?.jsonBody ?? ''),
                 )
                 .toString())!
             .toList()
@@ -1008,7 +908,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
           timestamp: getCurrentTimestamp,
           firstMessage: false,
           message:
-              'GPT suggestions API error. Status code ${(gptSuggestions.statusCode ?? 200).toString()}',
+              'GPT suggestions API error. Status code ${(gptSuggestions?.statusCode ?? 200).toString()}',
           user: User.system,
           userRef: currentUserReference,
           include: false,
@@ -1025,7 +925,7 @@ class ChatEnhancedModel extends FlutterFlowModel<ChatEnhancedWidget> {
         timestamp: getCurrentTimestamp,
         firstMessage: false,
         message:
-            'GPT response API error. Status code ${(gptResponse.statusCode ?? 200).toString()}',
+            'GPT response API error. Status code ${(gptResponse?.statusCode ?? 200).toString()}',
         user: User.system,
         userRef: currentUserReference,
         include: false,

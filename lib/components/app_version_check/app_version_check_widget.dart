@@ -107,12 +107,12 @@ class _AppVersionCheckWidgetState extends State<AppVersionCheckWidget> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                padding:
+                    const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
                 child: FFButtonWidget(
                   onPressed: () async {
                     logFirebaseEvent('APP_VERSION_CHECK_LOG_OUT_BTN_ON_TAP');
                     logFirebaseEvent('Button_custom_action');
-                    await actions.onesignalLogout();
                     logFirebaseEvent('Button_auth');
                     GoRouter.of(context).prepareAuthEvent();
                     await authManager.signOut();
@@ -122,10 +122,10 @@ class _AppVersionCheckWidgetState extends State<AppVersionCheckWidget> {
                   },
                   text: 'Log out',
                   options: FFButtonOptions(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(
+                        24.0, 0.0, 24.0, 0.0),
+                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                        0.0, 0.0, 0.0, 0.0),
                     color: FlutterFlowTheme.of(context).primary,
                     textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily:

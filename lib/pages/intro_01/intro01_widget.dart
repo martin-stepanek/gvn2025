@@ -146,7 +146,11 @@ class _Intro01WidgetState extends State<Intro01Widget> {
                                 FlutterFlowDropDown<String>(
                                   controller: _model.usernameValueController ??=
                                       FormFieldController<String>(null),
-                                  options: const ['Option 1', 'Option 2', 'Option 3'],
+                                  options: const [
+                                    'Option 1',
+                                    'Option 2',
+                                    'Option 3'
+                                  ],
                                   onChanged: (val) => safeSetState(
                                       () => _model.usernameValue = val),
                                   width: double.infinity,
@@ -288,8 +292,8 @@ class _Intro01WidgetState extends State<Intro01Widget> {
                         ),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 0.0, 0.0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            0.0, 30.0, 0.0, 0.0),
                         child: FFButtonWidget(
                           onPressed: () async {
                             logFirebaseEvent('INTRO_01_PAGE_LogIn_ON_TAP');
@@ -320,10 +324,6 @@ class _Intro01WidgetState extends State<Intro01Widget> {
                               appVersion: FFAppConstants.appVersion,
                             ));
                             logFirebaseEvent('LogIn_action_block');
-                            await action_blocks.onesignalInitialise(
-                              context,
-                              userId: currentUserReference?.id,
-                            );
                             logFirebaseEvent('LogIn_navigate_to');
 
                             context.goNamedAuth('intro_02', context.mounted);
