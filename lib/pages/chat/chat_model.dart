@@ -1,15 +1,13 @@
 import '/auth/firebase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
 import '/components/drawer/drawer_widget.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
+import '/custom_code/actions/index.dart' as actions;
 import 'chat_widget.dart' show ChatWidget;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_functions/cloud_functions.dart';
 
 class ChatModel extends FlutterFlowModel<ChatWidget> {
   ///  Local state fields for this page.
@@ -91,16 +89,10 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
   /// Action blocks.
   Future submitPrompt(BuildContext context) async {
     MessagesRecord? newMessage;
-    ApiCallResponse? aZgptCheck;
-    ApiCallResponse? gptResponse;
+    String? genkitCall;
     MessagesRecord? coachResponse;
-    ApiCallResponse? gptSuggestions;
 
     logFirebaseEvent('submitPrompt_backend_call');
-
-    final poemFlow = FirebaseFunctions.instance.httpsCallable('generatePoem');
-    final response = await poemFlow.call("My daughter");
-    print(response);
 
     var messagesRecordReference1 =
         MessagesRecord.createDoc(currentUserDocument!.lastChat!);
@@ -136,38 +128,10 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
     promptSuggestions = [];
     showPromptSuggestions = false;
     awaitingReply = true;
-    logFirebaseEvent('submitPrompt_backend_call');
-    aZgptCheck = await AzureGroup.aZcoachThreePointFiveCall.call(
-      messagesJson: functions.generateCheckPrompt(
-          promptText,
-          CoachCategory.goal_coach,
-          messages
-                  .where((e) =>
-                      e.include && !e.firstMessage && (e.user == User.coach))
-                  .toList()
-                  .isNotEmpty
-              ? valueOrDefault<String>(
-                  messages
-                      .where((e) =>
-                          !e.firstMessage &&
-                          e.include &&
-                          (e.user == User.coach))
-                      .toList()
-                      .firstOrNull
-                      ?.message,
-                  'No previous message.',
-                )
-              : 'No previous message.'),
-    );
-
-    if ((aZgptCheck.succeeded ?? true)) {
-      if ((AzureGroup.aZcoachThreePointFiveCall
-              .content(
-                (aZgptCheck.jsonBody ?? ''),
-              )
-              .toString()
-              .trim()) ==
-          'valid_prompt') {
+    logFirebaseEvent('submitPrompt_custom_action');
+    genkitCall = await actions.genkitCall();
+    if (genkitCall != '') {
+      if ((genkitCall == 'valid_prompt') || (genkitCall != '')) {
         logFirebaseEvent('submitPrompt_backend_call');
 
         await MessagesRecord.createDoc(currentUserDocument!.lastChat!)
@@ -179,51 +143,19 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
             formatType: FormatType.custom,
             format: '###.#',
             locale: '',
-          )} seconds. Total tokens used: ${AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                (aZgptCheck.jsonBody ?? ''),
-              ).toString()}. Cost: \$${formatNumber(
-            AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                  (aZgptCheck.jsonBody ?? ''),
-                ) /
-                1000000 *
-                1.5,
-            formatType: FormatType.custom,
-            format: '###.#####',
-            locale: '',
-          )}.',
+          )} seconds. Total tokens used: 0. Cost: \$0.',
           user: User.system,
           userRef: currentUserReference,
           include: false,
           secondsToGenerate: timerMilliseconds * 1000,
-          costUsd: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                (aZgptCheck.jsonBody ?? ''),
-              ) /
-              1000000 *
-              1.5,
-          tokensTotal: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-            (aZgptCheck.jsonBody ?? ''),
-          ),
-          tokensPrompt: AzureGroup.aZcoachThreePointFiveCall.tokensPrompt(
-            (aZgptCheck.jsonBody ?? ''),
-          ),
-          tokensResponse: AzureGroup.aZcoachThreePointFiveCall.tokensCompletion(
-            (aZgptCheck.jsonBody ?? ''),
-          ),
+          costUsd: 0.0,
+          tokensTotal: 0,
+          tokensPrompt: 0,
+          tokensResponse: 0,
         ));
         logFirebaseEvent('submitPrompt_update_page_state');
         time = timerMilliseconds;
-        logFirebaseEvent('submitPrompt_backend_call');
-        gptResponse = await AzureGroup.aZcoachThreePointFiveCall.call(
-          messagesJson: functions.generateMessages(
-              messages.where((e) => e.include).toList().toList(),
-              valueOrDefault<String>(
-                promptText,
-                'Hello!',
-              ),
-              CoachCategory.goal_coach),
-        );
-
-        if ((gptResponse.succeeded ?? true)) {
+        if (genkitCall != '') {
           logFirebaseEvent('submitPrompt_backend_call');
 
           var messagesRecordReference3 =
@@ -231,61 +163,29 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
           await messagesRecordReference3.set(createMessagesRecordData(
             timestamp: getCurrentTimestamp,
             firstMessage: false,
-            message: AzureGroup.aZcoachThreePointFiveCall
-                .content(
-                  (gptResponse.jsonBody ?? ''),
-                )
-                .toString()
-                .trim(),
+            message: genkitCall,
             user: User.coach,
             userRef: currentUserReference,
             include: true,
             secondsToGenerate: (timerMilliseconds - (time!)) / 1000,
-            costUsd: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                  (gptResponse.jsonBody ?? ''),
-                ) /
-                1000000 *
-                1.5,
-            tokensTotal: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-              (gptResponse.jsonBody ?? ''),
-            ),
-            tokensPrompt: AzureGroup.aZcoachThreePointFiveCall.tokensPrompt(
-              (gptResponse.jsonBody ?? ''),
-            ),
-            tokensResponse:
-                AzureGroup.aZcoachThreePointFiveCall.tokensCompletion(
-              (gptResponse.jsonBody ?? ''),
-            ),
+            costUsd: 0.0,
+            tokensTotal: 0,
+            tokensPrompt: 0,
+            tokensResponse: 0,
           ));
           coachResponse = MessagesRecord.getDocumentFromData(
               createMessagesRecordData(
                 timestamp: getCurrentTimestamp,
                 firstMessage: false,
-                message: AzureGroup.aZcoachThreePointFiveCall
-                    .content(
-                      (gptResponse.jsonBody ?? ''),
-                    )
-                    .toString()
-                    .trim(),
+                message: (genkitCall != '').toString(),
                 user: User.coach,
                 userRef: currentUserReference,
                 include: true,
                 secondsToGenerate: (timerMilliseconds - (time!)) / 1000,
-                costUsd: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                      (gptResponse.jsonBody ?? ''),
-                    ) /
-                    1000000 *
-                    1.5,
-                tokensTotal: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                  (gptResponse.jsonBody ?? ''),
-                ),
-                tokensPrompt: AzureGroup.aZcoachThreePointFiveCall.tokensPrompt(
-                  (gptResponse.jsonBody ?? ''),
-                ),
-                tokensResponse:
-                    AzureGroup.aZcoachThreePointFiveCall.tokensCompletion(
-                  (gptResponse.jsonBody ?? ''),
-                ),
+                costUsd: 0.0,
+                tokensTotal: 0,
+                tokensPrompt: 0,
+                tokensResponse: 0,
               ),
               messagesRecordReference3);
           logFirebaseEvent('submitPrompt_backend_call');
@@ -299,54 +199,20 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
               formatType: FormatType.custom,
               format: '###.#',
               locale: '',
-            )} seconds. Total tokens used: ${AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                  (gptResponse.jsonBody ?? ''),
-                ).toString()}. Cost: \$${formatNumber(
-              AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                    (gptResponse.jsonBody ?? ''),
-                  ) /
-                  1000000 *
-                  1.5,
-              formatType: FormatType.custom,
-              format: '###.#####',
-              locale: '',
-            )}.',
+            )} seconds. Total tokens used: 0. Cost: \$0.',
             user: User.system,
             userRef: currentUserReference,
             include: false,
             secondsToGenerate: (timerMilliseconds - time!.toDouble()) / 1000,
-            costUsd: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                  (gptResponse.jsonBody ?? ''),
-                ) /
-                1000000 *
-                1.5,
-            tokensTotal: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-              (gptResponse.jsonBody ?? ''),
-            ),
-            tokensPrompt: AzureGroup.aZcoachThreePointFiveCall.tokensPrompt(
-              (gptResponse.jsonBody ?? ''),
-            ),
-            tokensResponse:
-                AzureGroup.aZcoachThreePointFiveCall.tokensCompletion(
-              (gptResponse.jsonBody ?? ''),
-            ),
+            costUsd: 0.0,
+            tokensTotal: 0,
+            tokensPrompt: 0,
+            tokensResponse: 0,
           ));
-          logFirebaseEvent('submitPrompt_backend_call');
-          gptSuggestions = await AzureGroup.aZcoachThreePointFiveCall.call(
-            messagesJson:
-                functions.generateSuggestionsPrompt(coachResponse.message),
-          );
-
-          if ((gptSuggestions.succeeded ?? true)) {
+          if (genkitCall != '') {
             logFirebaseEvent('submitPrompt_update_page_state');
-            promptSuggestions = functions
-                .getSuggestions(AzureGroup.aZcoachThreePointFiveCall
-                    .content(
-                      (gptSuggestions.jsonBody ?? ''),
-                    )
-                    .toString())!
-                .toList()
-                .cast<String>();
+            promptSuggestions =
+                FFAppConstants.defaultSuggestions.toList().cast<String>();
             showPromptSuggestions = true;
             awaitingReply = false;
           } else {
@@ -356,8 +222,7 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
                 .set(createMessagesRecordData(
               timestamp: getCurrentTimestamp,
               firstMessage: false,
-              message:
-                  'GPT suggestions API error. Status code ${(gptSuggestions.statusCode ?? 200).toString()}',
+              message: 'GPT suggestions API error',
               user: User.system,
               userRef: currentUserReference,
               include: false,
@@ -375,8 +240,7 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
               .set(createMessagesRecordData(
             timestamp: getCurrentTimestamp,
             firstMessage: false,
-            message:
-                'GPT response API error. Status code ${(gptResponse.statusCode ?? 200).toString()}',
+            message: 'GPT response API error.',
             user: User.system,
             userRef: currentUserReference,
             include: false,
@@ -398,20 +262,10 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
           userRef: currentUserReference,
           include: false,
           secondsToGenerate: timerMilliseconds * 1000,
-          costUsd: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                (aZgptCheck.jsonBody ?? ''),
-              ) /
-              1000000 *
-              1.5,
-          tokensTotal: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-            (aZgptCheck.jsonBody ?? ''),
-          ),
-          tokensPrompt: AzureGroup.aZcoachThreePointFiveCall.tokensPrompt(
-            (aZgptCheck.jsonBody ?? ''),
-          ),
-          tokensResponse: AzureGroup.aZcoachThreePointFiveCall.tokensCompletion(
-            (aZgptCheck.jsonBody ?? ''),
-          ),
+          costUsd: 0.0,
+          tokensTotal: 0,
+          tokensPrompt: 0,
+          tokensResponse: 0,
         ));
         logFirebaseEvent('submitPrompt_backend_call');
 
@@ -420,36 +274,15 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
           timestamp: getCurrentTimestamp,
           firstMessage: false,
           message:
-              'Time elapsed: $timerValue seconds. Tokens used: ${AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                    (aZgptCheck.jsonBody ?? ''),
-                  ).toString()}. Cost: \$${formatNumber(
-            AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                  (aZgptCheck.jsonBody ?? ''),
-                ) /
-                1000000 *
-                1.5,
-            formatType: FormatType.custom,
-            format: '###.#####',
-            locale: '',
-          )}.',
+              'Time elapsed: $timerValue seconds. Tokens used: 0. Cost: \$0.',
           user: User.system,
           userRef: currentUserReference,
           include: false,
           secondsToGenerate: timerMilliseconds * 1000,
-          costUsd: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-                (aZgptCheck.jsonBody ?? ''),
-              ) /
-              1000000 *
-              1.5,
-          tokensTotal: AzureGroup.aZcoachThreePointFiveCall.tokensTotal(
-            (aZgptCheck.jsonBody ?? ''),
-          ),
-          tokensPrompt: AzureGroup.aZcoachThreePointFiveCall.tokensPrompt(
-            (aZgptCheck.jsonBody ?? ''),
-          ),
-          tokensResponse: AzureGroup.aZcoachThreePointFiveCall.tokensCompletion(
-            (aZgptCheck.jsonBody ?? ''),
-          ),
+          costUsd: 0.0,
+          tokensTotal: 0,
+          tokensPrompt: 0,
+          tokensResponse: 0,
         ));
         logFirebaseEvent('submitPrompt_backend_call');
 
@@ -469,8 +302,7 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
           .set(createMessagesRecordData(
         timestamp: getCurrentTimestamp,
         firstMessage: false,
-        message:
-            'GPT check API error. Status code ${(aZgptCheck.statusCode ?? 200).toString()}',
+        message: 'API error.',
         user: User.system,
         userRef: currentUserReference,
         include: false,

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '/backend/backend.dart';
-import '/backend/schema/enums/enums.dart';
+import '/backend/schema/structs/index.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -103,32 +103,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'profile',
           path: '/profile',
           builder: (context, params) => const ProfileWidget(),
-        ),
-        FFRoute(
-          name: 'chat_enhanced',
-          path: '/chatEnhanced',
-          asyncParams: {
-            'chat': getDoc(['chats'], ChatsRecord.fromSnapshot),
-          },
-          builder: (context, params) => ChatEnhancedWidget(
-            category: params.getParam<CoachCategory>(
-              'category',
-              ParamType.Enum,
-            ),
-            promptSuggestions: params.getParam<String>(
-              'promptSuggestions',
-              ParamType.String,
-              isList: true,
-            ),
-            newChat: params.getParam(
-              'newChat',
-              ParamType.bool,
-            ),
-            chat: params.getParam(
-              'chat',
-              ParamType.Document,
-            ),
-          ),
         ),
         FFRoute(
           name: 'intro_20',

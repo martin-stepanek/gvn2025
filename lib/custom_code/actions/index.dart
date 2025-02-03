@@ -7,3 +7,4 @@ export 'pick_height.dart' show pickHeight;
 export 'pick_integer.dart' show pickInteger;
 export 'pick_waist.dart' show pickWaist;
 export 'speech_to_text.dart' show speechToText;
+export 'genkit_call.dart' show genkitCall;

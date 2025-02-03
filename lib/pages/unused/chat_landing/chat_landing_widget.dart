@@ -161,58 +161,13 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                           onTap: () async {
                                             logFirebaseEvent(
                                                 'CHAT_LANDING_PAGE_Container_ON_TAP');
-                                            if (chatLandingChatsRecordList
+                                            if (!(chatLandingChatsRecordList
                                                 .where((e) =>
                                                     e.category ==
                                                     CoachCategory
                                                         .fitness_enhanced)
                                                 .toList()
-                                                .isNotEmpty) {
-                                              logFirebaseEvent(
-                                                  'Container_navigate_to');
-
-                                              context.pushNamed(
-                                                'chat_enhanced',
-                                                queryParameters: {
-                                                  'category': serializeParam(
-                                                    CoachCategory
-                                                        .fitness_enhanced,
-                                                    ParamType.Enum,
-                                                  ),
-                                                  'promptSuggestions':
-                                                      serializeParam(
-                                                    functions.defaultSuggetions(
-                                                        CoachCategory
-                                                            .fitness_enhanced),
-                                                    ParamType.String,
-                                                    isList: true,
-                                                  ),
-                                                  'newChat': serializeParam(
-                                                    false,
-                                                    ParamType.bool,
-                                                  ),
-                                                  'chat': serializeParam(
-                                                    chatLandingChatsRecordList
-                                                        .where((e) =>
-                                                            e.category ==
-                                                            CoachCategory
-                                                                .fitness_enhanced)
-                                                        .toList()
-                                                        .firstOrNull,
-                                                    ParamType.Document,
-                                                  ),
-                                                }.withoutNulls,
-                                                extra: <String, dynamic>{
-                                                  'chat': chatLandingChatsRecordList
-                                                      .where((e) =>
-                                                          e.category ==
-                                                          CoachCategory
-                                                              .fitness_enhanced)
-                                                      .toList()
-                                                      .firstOrNull,
-                                                },
-                                              );
-                                            } else {
+                                                .isNotEmpty)) {
                                               logFirebaseEvent(
                                                   'Container_backend_call');
 
@@ -263,39 +218,6 @@ class _ChatLandingWidgetState extends State<ChatLandingWidget> {
                                                 tokensPrompt: 0,
                                                 tokensResponse: 0,
                                               ));
-                                              logFirebaseEvent(
-                                                  'Container_navigate_to');
-
-                                              context.pushNamed(
-                                                'chat_enhanced',
-                                                queryParameters: {
-                                                  'category': serializeParam(
-                                                    CoachCategory
-                                                        .fitness_enhanced,
-                                                    ParamType.Enum,
-                                                  ),
-                                                  'promptSuggestions':
-                                                      serializeParam(
-                                                    functions.defaultSuggetions(
-                                                        CoachCategory
-                                                            .fitness_enhanced),
-                                                    ParamType.String,
-                                                    isList: true,
-                                                  ),
-                                                  'newChat': serializeParam(
-                                                    true,
-                                                    ParamType.bool,
-                                                  ),
-                                                  'chat': serializeParam(
-                                                    _model.newChatDocument,
-                                                    ParamType.Document,
-                                                  ),
-                                                }.withoutNulls,
-                                                extra: <String, dynamic>{
-                                                  'chat':
-                                                      _model.newChatDocument,
-                                                },
-                                              );
                                             }
 
                                             safeSetState(() {});

@@ -4,8 +4,6 @@ export '/pages/unused/chat_landing/chat_landing_widget.dart'
     show ChatLandingWidget;
 export '/pages/intro_01/intro01_widget.dart' show Intro01Widget;
 export '/pages/profile/profile_widget.dart' show ProfileWidget;
-export '/pages/unused/chat_enhanced/chat_enhanced_widget.dart'
-    show ChatEnhancedWidget;
 export '/pages/unused/intro_20/intro20_widget.dart' show Intro20Widget;
 export '/pages/unused/assessments/healthy_futures/hf_01_intro/hf01_intro_widget.dart'
     show Hf01IntroWidget;
