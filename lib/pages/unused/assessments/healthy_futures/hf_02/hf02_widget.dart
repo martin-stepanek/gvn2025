@@ -1,5 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -52,31 +50,38 @@ class _Hf02WidgetState extends State<Hf02Widget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          iconTheme:
-              IconThemeData(color: FlutterFlowTheme.of(context).secondaryText),
-          automaticallyImplyLeading: false,
-          leading: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              logFirebaseEvent('HF_02_PAGE_Icon_3r7x7ozc_ON_TAP');
-              logFirebaseEvent('Icon_navigate_back');
-              context.safePop();
-            },
-            child: Icon(
-              Icons.chevron_left,
-              color: FlutterFlowTheme.of(context).secondaryText,
-              size: 22.0,
-            ),
-          ),
-          actions: const [],
-          centerTitle: true,
-          elevation: 0.0,
-        ),
+        appBar: responsiveVisibility(
+          context: context,
+          tablet: false,
+          tabletLandscape: false,
+          desktop: false,
+        )
+            ? AppBar(
+                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+                iconTheme: IconThemeData(
+                    color: FlutterFlowTheme.of(context).secondaryText),
+                automaticallyImplyLeading: false,
+                leading: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    logFirebaseEvent('HF_02_PAGE_Icon_3r7x7ozc_ON_TAP');
+                    logFirebaseEvent('Icon_navigate_back');
+                    context.safePop();
+                  },
+                  child: Icon(
+                    Icons.chevron_left,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 22.0,
+                  ),
+                ),
+                actions: const [],
+                centerTitle: true,
+                elevation: 0.0,
+              )
+            : null,
         body: SafeArea(
           top: true,
           child: Padding(
@@ -211,23 +216,6 @@ class _Hf02WidgetState extends State<Hf02Widget> {
                               functions
                                   .subtractFromYear(getCurrentTimestamp, 18)!
                                   .toDouble())!) {
-                            logFirebaseEvent('Button_backend_call');
-
-                            await currentUserReference!
-                                .update(createUsersRecordData(
-                              age: functions
-                                  .subtractFromYear(getCurrentTimestamp,
-                                      int.tryParse(_model.textController.text))
-                                  ?.toDouble(),
-                            ));
-                            logFirebaseEvent('Button_backend_call');
-
-                            await currentUserDocument!.hfRef!
-                                .update(createHfRecordData(
-                              age: functions.subtractFromYear(
-                                  getCurrentTimestamp,
-                                  int.tryParse(_model.textController.text)),
-                            ));
                             logFirebaseEvent('Button_navigate_to');
 
                             context.pushNamed('hf_03');

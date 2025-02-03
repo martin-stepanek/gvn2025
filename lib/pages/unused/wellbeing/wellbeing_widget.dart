@@ -44,29 +44,36 @@ class _WellbeingWidgetState extends State<WellbeingWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          automaticallyImplyLeading: true,
-          leading: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              logFirebaseEvent('WELLBEING_PAGE_Icon_6x2numow_ON_TAP');
-              logFirebaseEvent('Icon_navigate_back');
-              context.safePop();
-            },
-            child: Icon(
-              Icons.arrow_back_sharp,
-              color: FlutterFlowTheme.of(context).primaryText,
-              size: 24.0,
-            ),
-          ),
-          actions: const [],
-          centerTitle: true,
-          elevation: 0.0,
-        ),
+        appBar: responsiveVisibility(
+          context: context,
+          tablet: false,
+          tabletLandscape: false,
+          desktop: false,
+        )
+            ? AppBar(
+                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+                automaticallyImplyLeading: true,
+                leading: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    logFirebaseEvent('WELLBEING_PAGE_Icon_6x2numow_ON_TAP');
+                    logFirebaseEvent('Icon_navigate_back');
+                    context.safePop();
+                  },
+                  child: Icon(
+                    Icons.arrow_back_sharp,
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    size: 24.0,
+                  ),
+                ),
+                actions: const [],
+                centerTitle: true,
+                elevation: 0.0,
+              )
+            : null,
         body: SafeArea(
           top: true,
           child: SingleChildScrollView(

@@ -4,7 +4,6 @@ import '/backend/schema/enums/enums.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -480,29 +479,7 @@ class _CoachHandoverWidgetState extends State<CoachHandoverWidget>
                       ));
                       logFirebaseEvent('Row_navigate_to');
 
-                      context.pushNamed(
-                        'chat',
-                        queryParameters: {
-                          'chatRef': serializeParam(
-                            _model.newChatDocument?.reference,
-                            ParamType.DocumentReference,
-                          ),
-                          'category': serializeParam(
-                            CoachCategory.goal_coach,
-                            ParamType.Enum,
-                          ),
-                          'promptSuggestions': serializeParam(
-                            functions
-                                .defaultSuggetions(CoachCategory.goal_coach),
-                            ParamType.String,
-                            isList: true,
-                          ),
-                          'newChat': serializeParam(
-                            true,
-                            ParamType.bool,
-                          ),
-                        }.withoutNulls,
-                      );
+                      context.pushNamed('chat');
 
                       safeSetState(() {});
                     },

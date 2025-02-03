@@ -389,7 +389,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		DKb4oG/teE4VGvWnJuq7unnYVzg=
+		bUmHeBYb6op6d7mwu/uNS7R4I+8=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -397,15 +397,15 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		WhaZyKIagNF64E75q1isSdq59IA=
+		JPDeHRYOyWIIXaOqcLBIfz/sRNc=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
-		S4ogvhICS69eL6cJjnYuikIueA0=
+		pfj+Q29k8HVbOaipXV1FnXBFBUg=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		j6SYz7iN/u75OW7fmmrryzzMpdc=
+		vHiqgUvKEdGAya/OvReeojhNLSg=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -467,10 +467,6 @@
 		<data>
 		U+MDjaDaIhqXUK4M/vjK+Td8QRQ=
 		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/images/Amazon_logo_pink_FinFit.png</key>
-		<data>
-		Tukub+klZl5utVNVXt1K2wSmI7g=
-		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/Apple_Health.png</key>
 		<data>
 		Xv4ITJCVwQ/BC8edgiPUG+oBsIo=
@@ -490,14 +486,6 @@
 		<key>Frameworks/App.framework/flutter_assets/assets/images/Fair.PNG</key>
 		<data>
 		7P0E1icGjdfqmy1KtVA0pZ2kO3M=
-		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/images/Footprint_pink_FinFit.png</key>
-		<data>
-		nXC8z7Z9+D6CHSo/ZCDn+PasHEo=
-		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/images/Form_pink_FinFit.png</key>
-		<data>
-		fXLuXi7vVEALrFdtsWZVCleg5uY=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/Good.PNG</key>
 		<data>
@@ -547,13 +535,13 @@
 		<data>
 		3B0gD0QdO5gytBtCnp0ix4uo2D4=
 		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/images/Smartwatch_pink_FinFIt.png</key>
-		<data>
-		LGU4xsHGAio8kWOlOArLGkLtF8g=
-		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/TipsIllustration.png</key>
 		<data>
 		G4QM35szAXsbj8Whn6fo1sWsB2g=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/images/Vitality.png</key>
+		<data>
+		Bb1uaSlwiAJP7iaPSI/MWEXPufI=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/VitalityLogo.png</key>
 		<data>
@@ -627,10 +615,6 @@
 		<data>
 		+XCGxXSVPK/EOsiT2RSdzT+bzy4=
 		</data>
-		<key>Frameworks/App.framework/flutter_assets/assets/images/undraw_Activity_tracker_re_2lvv.png</key>
-		<data>
-		xSepE+CbAOTMzhJB8/QulIzAW98=
-		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/vector.png</key>
 		<data>
 		A9I+l/7PrRGQa3XPU5pFeg0SxS0=
@@ -673,7 +657,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		1dg5Zlf1DRHWlwqFcGu4VY1027E=
+		r8tXw3MFPEJp5+HsgOKDe416sw4=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -805,7 +789,7 @@
 		</data>
 		<key>Frameworks/OneSignalCore.framework/OneSignalCore</key>
 		<data>
-		xNtagzNCbQUVBd9g6kijszUHJ3Q=
+		GHiAhAciWQF79hkrRCvbXGgn500=
 		</data>
 		<key>Frameworks/OneSignalCore.framework/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -821,7 +805,7 @@
 		</data>
 		<key>Frameworks/OneSignalExtension.framework/OneSignalExtension</key>
 		<data>
-		0eMsaUiOrYgQ4SZunkw9c47IPbU=
+		c3519GO+4kFIWbfmGAKU7yI/vSM=
 		</data>
 		<key>Frameworks/OneSignalExtension.framework/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -837,7 +821,7 @@
 		</data>
 		<key>Frameworks/OneSignalFramework.framework/OneSignalFramework</key>
 		<data>
-		olNeCXR4SSXSltVNpEGpKAauXKE=
+		MCul2RSxEIgTXMcodbB1O/j9a6o=
 		</data>
 		<key>Frameworks/OneSignalFramework.framework/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -853,7 +837,7 @@
 		</data>
 		<key>Frameworks/OneSignalInAppMessages.framework/OneSignalInAppMessages</key>
 		<data>
-		VTNCirGMQ8r8pIp2BcNMcVZqiQc=
+		87KAchJocy23L1ghzxz0iSe84is=
 		</data>
 		<key>Frameworks/OneSignalInAppMessages.framework/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -869,7 +853,7 @@
 		</data>
 		<key>Frameworks/OneSignalLiveActivities.framework/OneSignalLiveActivities</key>
 		<data>
-		FRxkhbuZzEtI8/oU7rV88XsTb4w=
+		+1B1GqsmFegeR7SKBiIM0Rf8PqQ=
 		</data>
 		<key>Frameworks/OneSignalLiveActivities.framework/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -885,7 +869,7 @@
 		</data>
 		<key>Frameworks/OneSignalLocation.framework/OneSignalLocation</key>
 		<data>
-		BCfqhvLah7fg/HIplDFOq5kJwi4=
+		8qUegNSoBqGmBWGY7o+6utCY7BQ=
 		</data>
 		<key>Frameworks/OneSignalLocation.framework/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -901,7 +885,7 @@
 		</data>
 		<key>Frameworks/OneSignalNotifications.framework/OneSignalNotifications</key>
 		<data>
-		7Dj5jHTw9hbAsO3V4eaqhEI5ZRs=
+		ADg+sEWCSmumQCATZBTJQNmh2Vg=
 		</data>
 		<key>Frameworks/OneSignalNotifications.framework/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -917,7 +901,7 @@
 		</data>
 		<key>Frameworks/OneSignalOSCore.framework/OneSignalOSCore</key>
 		<data>
-		oLVi+Vi2QVV+Nr/S/22+wth6WRE=
+		vWzjryF6umIepzpmiTb1xrSKBP8=
 		</data>
 		<key>Frameworks/OneSignalOSCore.framework/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -933,7 +917,7 @@
 		</data>
 		<key>Frameworks/OneSignalOutcomes.framework/OneSignalOutcomes</key>
 		<data>
-		VyOU1EQpgQ5rLxNgIJnyKQ1/PZE=
+		pBUMya+YDzyJ3NG2AFCCHLq+zek=
 		</data>
 		<key>Frameworks/OneSignalOutcomes.framework/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -949,7 +933,7 @@
 		</data>
 		<key>Frameworks/OneSignalUser.framework/OneSignalUser</key>
 		<data>
-		izogueBkPIHnVNWCWjiFP1nuyEI=
+		BOqgep+/reWbWaR1E8aJ1Fzmtx4=
 		</data>
 		<key>Frameworks/OneSignalUser.framework/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -1391,7 +1375,7 @@
 		</data>
 		<key>Runner.debug.dylib</key>
 		<data>
-		72xKWsDYt2+NexpsaIZMGqYZoHQ=
+		0QAXLaeSBbQYfOnsZd6nJ/81g8w=
 		</data>
 		<key>SDWebImage.bundle/Info.plist</key>
 		<data>
@@ -1411,7 +1395,7 @@
 		</data>
 		<key>__preview.dylib</key>
 		<data>
-		rH4rafhwB/48QYdGZnZfg55J/2U=
+		Kh9SVN242lnizvRulIXoIBlUZm4=
 		</data>
 		<key>device_info_plus_privacy.bundle/Info.plist</key>
 		<data>
@@ -2043,7 +2027,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/PIZYtjfCmyKaCdxnCXlDagvRYzjFDPMSCei03nLN/s=
+			8jgp1ZnaBVOvFYMdBP3jmPrECQjOUDElCTLUf5aClXk=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -2057,21 +2041,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			eKqzQYs87+eJMpgmvYsKQKD4Vr0w+GgsqK0eUeyfjuo=
+			DIuDPOqEh5J6zlIJq1w5Q8qHTvZFmi6fcquKH7elO9I=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			h5mIGmKN6H1l5/UlSNx9/Wsql1FQK/vNmItxELDy/MQ=
+			o9SHZWq9LYw3ya2pj9QwoJEoWYJ/XtsLwYwpg4PdqDI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ngbxBFoMMhjqZjrDnEv8jEiUdKGttM2UtDMxSmWHUYo=
+			p1YAqUFg4EcT52yxndwuFkTdOzfN1onwMjjF1Xc6iws=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -2179,13 +2163,6 @@
 			wFJaS8Ku+EwWAk1zuBhub+z57BW476UZNcqGVCQuRrw=
 			</data>
 		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/images/Amazon_logo_pink_FinFit.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			XU7iMwQuvfAgypd1sGtoH1JJ5fHBGCqqfPd9DcoUH4M=
-			</data>
-		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/Apple_Health.png</key>
 		<dict>
 			<key>hash2</key>
@@ -2219,20 +2196,6 @@
 			<key>hash2</key>
 			<data>
 			5YR5PQ7aMde1N92AJ/sF6+CLVLTDrNRuhY3Gt/oaaTI=
-			</data>
-		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/images/Footprint_pink_FinFit.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			m26pZQA9LBI0xSsnrh8QAVoJsGRI5jQ1F4XuqJI2pEg=
-			</data>
-		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/images/Form_pink_FinFit.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			DgOKcGAzxvHEm/CPnsSEUrbUwRSSvpzzTJAMlVbYVOM=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/Good.PNG</key>
@@ -2319,18 +2282,18 @@
 			c092rRE8iIkF4Nao6oNmnB62XFzs/OD6MjnU4c8gq0o=
 			</data>
 		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/images/Smartwatch_pink_FinFIt.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			KKlwU0UAsDV7YadLf3B4HTI/v3oWXUgi4auwoQ2jP9M=
-			</data>
-		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/TipsIllustration.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			uJxBVD5eSY/Imjr2XS2QBxfBlvpQohMXlK78pm1V2Lk=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/images/Vitality.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			rzyecsoG0pmFDTQgK7+7T6xSlEozwHKHzkCeBvAyUkg=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/VitalityLogo.png</key>
@@ -2459,13 +2422,6 @@
 			OlNFC+FexqmNDwa8ZGMf3WZ3cwUkXq66P5IR0F9ICeo=
 			</data>
 		</dict>
-		<key>Frameworks/App.framework/flutter_assets/assets/images/undraw_Activity_tracker_re_2lvv.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			VttoRsgjW/siippdA7nPK+29Iea8DBCdXrIVGZSpuIU=
-			</data>
-		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/vector.png</key>
 		<dict>
 			<key>hash2</key>
@@ -2540,7 +2496,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			uzZ/eLFHEjzAzoreE+43WD3WieOguCY8WR3dz7DLtQM=
+			HMG+uQHA6zg6Rm3BQwBl6hXSPNkLYN9Au1ju8BQEVkA=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -2771,7 +2727,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hsl0mbXwEUov7/2GxU9DYay+iz3CgWw+3BbCR3SUdc4=
+			/hJaYHYZeYiWXy7UvcjlBIWVYsK9pH1KLc3VSb//Afw=
 			</data>
 		</dict>
 		<key>Frameworks/OneSignalCore.framework/PrivacyInfo.xcprivacy</key>
@@ -2799,7 +2755,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8G6tWIpzvkd3xUYBtYkwozmLBCsjsAj/zar05Ccry/8=
+			UDHC9ludIz46ozhcqQbh5loIsnVl/bx0/8gpIwlS/9k=
 			</data>
 		</dict>
 		<key>Frameworks/OneSignalExtension.framework/PrivacyInfo.xcprivacy</key>
@@ -2827,7 +2783,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GJTS+jVXy54PPLPz5efE1QGrbMN0sgcqFhscDuCr7W0=
+			clcuYiuZJN/rraz5+tXf2EZthHYXBXKkCT3VKqvllsk=
 			</data>
 		</dict>
 		<key>Frameworks/OneSignalFramework.framework/PrivacyInfo.xcprivacy</key>
@@ -2855,7 +2811,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			TorQSfojtIIRjUq6D7EttpV85qftUY5pxzJKoY64QlY=
+			VnhTWgVq/WJ5paT5xh0yFeChxigktG60XT7TrcMa+IA=
 			</data>
 		</dict>
 		<key>Frameworks/OneSignalInAppMessages.framework/PrivacyInfo.xcprivacy</key>
@@ -2883,7 +2839,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JBrHLICBfRcSDPFBDBi2pk8+cBoM2DLTXtORRmvhfYc=
+			T+gToqlwOAXoCSaujwNDDeDa2UYbT20LTDnia+gJYM0=
 			</data>
 		</dict>
 		<key>Frameworks/OneSignalLiveActivities.framework/PrivacyInfo.xcprivacy</key>
@@ -2911,7 +2867,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			2j/Be9Emb5nnuedBPiphLsQBtw+8U/K6k6AcYBaTbgQ=
+			IgM40ILaF96z1zl5OcavP90OGmNnBe57Yi61/SAr7EY=
 			</data>
 		</dict>
 		<key>Frameworks/OneSignalLocation.framework/PrivacyInfo.xcprivacy</key>
@@ -2939,7 +2895,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			9Qqdr8/y3QvVWvN8PsWIhcOOPEtQFlccb5kHQ2iPSn8=
+			+6BAK9PWqcb1ybsY5Z6WoseaO/NBjSXCSC4JZ8h/qe0=
 			</data>
 		</dict>
 		<key>Frameworks/OneSignalNotifications.framework/PrivacyInfo.xcprivacy</key>
@@ -2967,7 +2923,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			djdNU4fTGjHG2HEo10JNLZzK53ygJ3SUsr0biQKEJnI=
+			gdIRLkDnq6MFAbtzUPyY3HJhYygtNsDZVHG/3SuTdCk=
 			</data>
 		</dict>
 		<key>Frameworks/OneSignalOSCore.framework/PrivacyInfo.xcprivacy</key>
@@ -2995,7 +2951,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			RD2n3+qnBE9MJHvH8yHUQUewD80EnPUK64oJGoN6Hj4=
+			pZkgcztz4VhAcb8HvquQeA9sbfvkRNhf4SyDWeRdHAs=
 			</data>
 		</dict>
 		<key>Frameworks/OneSignalOutcomes.framework/PrivacyInfo.xcprivacy</key>
@@ -3023,7 +2979,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			G6UKadHJeElqUx8xTm0It8jhYU4Pou3a5nYaR9NiTCM=
+			VSaFHxE5EQLWiQhdgjBQUywHq/3YkRU+ZtVayb8iUKY=
 			</data>
 		</dict>
 		<key>Frameworks/OneSignalUser.framework/PrivacyInfo.xcprivacy</key>
@@ -3526,7 +3482,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			753jHR0mH3DT0tZR1AJ1RZGN2yzQSHIU77J/3RexQyk=
+			2qgD6t8CjN2TNm90A6kNl6L3Eoowlx/kdAjMbrI/o9U=
 			</data>
 		</dict>
 		<key>SDWebImage.bundle/Info.plist</key>
@@ -3561,7 +3517,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mS1/LmyP/f4EVzXV5RVqehdE2ZdjbVr4Ye2kVZ+pdEE=
+			rsrCpzzUze7uohiy2mN/hHvICoDFDRQ4T037vW8YP78=
 			</data>
 		</dict>
 		<key>device_info_plus_privacy.bundle/Info.plist</key>

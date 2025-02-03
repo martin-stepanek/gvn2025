@@ -82,17 +82,24 @@ class _Intro20WidgetState extends State<Intro20Widget> {
             child: Scaffold(
               key: scaffoldKey,
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-              appBar: PreferredSize(
-                preferredSize: const Size.fromHeight(20.0),
-                child: AppBar(
-                  backgroundColor:
-                      FlutterFlowTheme.of(context).primaryBackground,
-                  automaticallyImplyLeading: false,
-                  actions: const [],
-                  centerTitle: true,
-                  elevation: 0.0,
-                ),
-              ),
+              appBar: responsiveVisibility(
+                context: context,
+                tablet: false,
+                tabletLandscape: false,
+                desktop: false,
+              )
+                  ? PreferredSize(
+                      preferredSize: const Size.fromHeight(20.0),
+                      child: AppBar(
+                        backgroundColor:
+                            FlutterFlowTheme.of(context).primaryBackground,
+                        automaticallyImplyLeading: false,
+                        actions: const [],
+                        centerTitle: true,
+                        elevation: 0.0,
+                      ),
+                    )
+                  : null,
               body: Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 40.0),
                 child: Column(

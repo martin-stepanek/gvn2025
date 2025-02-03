@@ -1,5 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -57,31 +55,38 @@ class _Hf24WidgetState extends State<Hf24Widget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          iconTheme:
-              IconThemeData(color: FlutterFlowTheme.of(context).secondaryText),
-          automaticallyImplyLeading: false,
-          leading: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              logFirebaseEvent('HF_24_PAGE_Icon_c4fs5cf5_ON_TAP');
-              logFirebaseEvent('Icon_navigate_back');
-              context.safePop();
-            },
-            child: Icon(
-              Icons.chevron_left,
-              color: FlutterFlowTheme.of(context).secondaryText,
-              size: 22.0,
-            ),
-          ),
-          actions: const [],
-          centerTitle: true,
-          elevation: 0.0,
-        ),
+        appBar: responsiveVisibility(
+          context: context,
+          tablet: false,
+          tabletLandscape: false,
+          desktop: false,
+        )
+            ? AppBar(
+                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+                iconTheme: IconThemeData(
+                    color: FlutterFlowTheme.of(context).secondaryText),
+                automaticallyImplyLeading: false,
+                leading: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    logFirebaseEvent('HF_24_PAGE_Icon_c4fs5cf5_ON_TAP');
+                    logFirebaseEvent('Icon_navigate_back');
+                    context.safePop();
+                  },
+                  child: Icon(
+                    Icons.chevron_left,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 22.0,
+                  ),
+                ),
+                actions: const [],
+                centerTitle: true,
+                elevation: 0.0,
+              )
+            : null,
         body: SafeArea(
           top: true,
           child: Padding(
@@ -466,14 +471,7 @@ class _Hf24WidgetState extends State<Hf24Widget> {
                       ? null
                       : () async {
                           logFirebaseEvent('HF_24_PAGE_NEXT_BTN_ON_TAP');
-                          if (_model.dontknowValue!) {
-                            logFirebaseEvent('Button_backend_call');
-
-                            await currentUserDocument!.hfRef!
-                                .update(createHfRecordData(
-                              chol: 9999.0,
-                            ));
-                          } else {
+                          if (!_model.dontknowValue!) {
                             if (_model.dropDownValue == 'mg/dL') {
                               logFirebaseEvent('Button_validate_form');
                               if (_model.formKey1.currentState == null ||
@@ -549,18 +547,6 @@ class _Hf24WidgetState extends State<Hf24Widget> {
                                 );
                               }
                             }
-
-                            logFirebaseEvent('Button_backend_call');
-
-                            await currentUserDocument!.hfRef!
-                                .update(createHfRecordData(
-                              chol: _model.dropDownValue == 'mg/dL'
-                                  ? (double.parse(
-                                          _model.mgdLTextController.text) *
-                                      0.0259)
-                                  : double.tryParse(
-                                      _model.mmolLTextController.text),
-                            ));
                           }
                         },
                   text: 'Next',

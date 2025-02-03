@@ -523,9 +523,7 @@ class _MwCheckInWidgetState extends State<MwCheckInWidget>
                                       logFirebaseEvent('Button_backend_call');
 
                                       await currentUserReference!
-                                          .update(createUsersRecordData(
-                                        lastMoodSubmitted: getCurrentTimestamp,
-                                      ));
+                                          .update(createUsersRecordData());
                                       logFirebaseEvent('Button_backend_call');
 
                                       await MoodRecord.createDoc(

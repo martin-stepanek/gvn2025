@@ -46,6 +46,16 @@ class ChatsRecord extends FirestoreRecord {
   String get intent => _intent ?? '';
   bool hasIntent() => _intent != null;
 
+  // "suggestions" field.
+  List<String>? _suggestions;
+  List<String> get suggestions => _suggestions ?? const [];
+  bool hasSuggestions() => _suggestions != null;
+
+  // "newChat" field.
+  bool? _newChat;
+  bool get newChat => _newChat ?? false;
+  bool hasNewChat() => _newChat != null;
+
   void _initializeFields() {
     _userRef = snapshotData['userRef'] as DocumentReference?;
     _timestamp = snapshotData['timestamp'] as DateTime?;
@@ -57,6 +67,8 @@ class ChatsRecord extends FirestoreRecord {
         ? snapshotData['step']
         : deserializeEnum<ProcessStep>(snapshotData['step']);
     _intent = snapshotData['intent'] as String?;
+    _suggestions = getDataList(snapshotData['suggestions']);
+    _newChat = snapshotData['newChat'] as bool?;
   }
 
   static CollectionReference get collection =>
@@ -99,6 +111,7 @@ Map<String, dynamic> createChatsRecordData({
   CoachCategory? category,
   ProcessStep? step,
   String? intent,
+  bool? newChat,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -108,6 +121,7 @@ Map<String, dynamic> createChatsRecordData({
       'category': category,
       'step': step,
       'intent': intent,
+      'newChat': newChat,
     }.withoutNulls,
   );
 
@@ -119,17 +133,28 @@ class ChatsRecordDocumentEquality implements Equality<ChatsRecord> {
 
   @override
   bool equals(ChatsRecord? e1, ChatsRecord? e2) {
+    const listEquality = ListEquality();
     return e1?.userRef == e2?.userRef &&
         e1?.timestamp == e2?.timestamp &&
         e1?.title == e2?.title &&
         e1?.category == e2?.category &&
         e1?.step == e2?.step &&
-        e1?.intent == e2?.intent;
+        e1?.intent == e2?.intent &&
+        listEquality.equals(e1?.suggestions, e2?.suggestions) &&
+        e1?.newChat == e2?.newChat;
   }
 
   @override
-  int hash(ChatsRecord? e) => const ListEquality().hash(
-      [e?.userRef, e?.timestamp, e?.title, e?.category, e?.step, e?.intent]);
+  int hash(ChatsRecord? e) => const ListEquality().hash([
+        e?.userRef,
+        e?.timestamp,
+        e?.title,
+        e?.category,
+        e?.step,
+        e?.intent,
+        e?.suggestions,
+        e?.newChat
+      ]);
 
   @override
   bool isValidKey(Object? o) => o is ChatsRecord;

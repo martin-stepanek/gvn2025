@@ -49,31 +49,38 @@ class _ProfileWidgetState extends State<ProfileWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          iconTheme:
-              IconThemeData(color: FlutterFlowTheme.of(context).secondaryText),
-          automaticallyImplyLeading: false,
-          leading: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              logFirebaseEvent('PROFILE_PAGE_Icon_lom3at15_ON_TAP');
-              logFirebaseEvent('Icon_navigate_back');
-              context.safePop();
-            },
-            child: Icon(
-              Icons.chevron_left,
-              color: FlutterFlowTheme.of(context).secondaryText,
-              size: 22.0,
-            ),
-          ),
-          actions: const [],
-          centerTitle: true,
-          elevation: 0.0,
-        ),
+        appBar: responsiveVisibility(
+          context: context,
+          tablet: false,
+          tabletLandscape: false,
+          desktop: false,
+        )
+            ? AppBar(
+                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+                iconTheme: IconThemeData(
+                    color: FlutterFlowTheme.of(context).secondaryText),
+                automaticallyImplyLeading: false,
+                leading: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    logFirebaseEvent('PROFILE_PAGE_Icon_lom3at15_ON_TAP');
+                    logFirebaseEvent('Icon_navigate_back');
+                    context.safePop();
+                  },
+                  child: Icon(
+                    Icons.chevron_left,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 22.0,
+                  ),
+                ),
+                actions: const [],
+                centerTitle: true,
+                elevation: 0.0,
+              )
+            : null,
         body: SafeArea(
           top: true,
           child: Padding(
@@ -595,8 +602,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 return;
                               }
 
-                              context.goNamedAuth(
-                                  'chat_landing', context.mounted);
+                              context.goNamedAuth('chat', context.mounted);
                             },
                             text: 'Delete account',
                             options: FFButtonOptions(

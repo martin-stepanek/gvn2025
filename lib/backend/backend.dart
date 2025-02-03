@@ -10,17 +10,12 @@ import 'schema/chats_record.dart';
 import 'schema/messages_record.dart';
 import 'schema/combined_data_record.dart';
 import 'schema/pa_data_record.dart';
-import 'schema/gameboards_record.dart';
-import 'schema/gameboard_tiles_record.dart';
 import 'schema/food_record.dart';
 import 'schema/coach_messages_record.dart';
 import 'schema/nba_record.dart';
 import 'schema/mealplan_record.dart';
-import 'schema/binah_record.dart';
 import 'schema/hf_record.dart';
 import 'schema/mood_record.dart';
-import 'schema/pathways_record.dart';
-import 'schema/actions_record.dart';
 import 'schema/notifications_record.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -35,17 +30,12 @@ export 'schema/chats_record.dart';
 export 'schema/messages_record.dart';
 export 'schema/combined_data_record.dart';
 export 'schema/pa_data_record.dart';
-export 'schema/gameboards_record.dart';
-export 'schema/gameboard_tiles_record.dart';
 export 'schema/food_record.dart';
 export 'schema/coach_messages_record.dart';
 export 'schema/nba_record.dart';
 export 'schema/mealplan_record.dart';
-export 'schema/binah_record.dart';
 export 'schema/hf_record.dart';
 export 'schema/mood_record.dart';
-export 'schema/pathways_record.dart';
-export 'schema/actions_record.dart';
 export 'schema/notifications_record.dart';
 
 /// Functions to query UsersRecords (as a Stream and as a Future).
@@ -242,83 +232,6 @@ Future<List<PaDataRecord>> queryPaDataRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query GameboardsRecords (as a Stream and as a Future).
-Future<int> queryGameboardsRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      GameboardsRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<GameboardsRecord>> queryGameboardsRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      GameboardsRecord.collection,
-      GameboardsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<GameboardsRecord>> queryGameboardsRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      GameboardsRecord.collection,
-      GameboardsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-/// Functions to query GameboardTilesRecords (as a Stream and as a Future).
-Future<int> queryGameboardTilesRecordCount({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      GameboardTilesRecord.collection(parent),
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<GameboardTilesRecord>> queryGameboardTilesRecord({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      GameboardTilesRecord.collection(parent),
-      GameboardTilesRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<GameboardTilesRecord>> queryGameboardTilesRecordOnce({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      GameboardTilesRecord.collection(parent),
-      GameboardTilesRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
 /// Functions to query FoodRecords (as a Stream and as a Future).
 Future<int> queryFoodRecordCount({
   DocumentReference? parent,
@@ -479,46 +392,6 @@ Future<List<MealplanRecord>> queryMealplanRecordOnce({
       singleRecord: singleRecord,
     );
 
-/// Functions to query BinahRecords (as a Stream and as a Future).
-Future<int> queryBinahRecordCount({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      BinahRecord.collection(parent),
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<BinahRecord>> queryBinahRecord({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      BinahRecord.collection(parent),
-      BinahRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<BinahRecord>> queryBinahRecordOnce({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      BinahRecord.collection(parent),
-      BinahRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
 /// Functions to query HfRecords (as a Stream and as a Future).
 Future<int> queryHfRecordCount({
   DocumentReference? parent,
@@ -594,83 +467,6 @@ Future<List<MoodRecord>> queryMoodRecordOnce({
     queryCollectionOnce(
       MoodRecord.collection(parent),
       MoodRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-/// Functions to query PathwaysRecords (as a Stream and as a Future).
-Future<int> queryPathwaysRecordCount({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      PathwaysRecord.collection,
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<PathwaysRecord>> queryPathwaysRecord({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      PathwaysRecord.collection,
-      PathwaysRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<PathwaysRecord>> queryPathwaysRecordOnce({
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      PathwaysRecord.collection,
-      PathwaysRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-/// Functions to query ActionsRecords (as a Stream and as a Future).
-Future<int> queryActionsRecordCount({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-}) =>
-    queryCollectionCount(
-      ActionsRecord.collection(parent),
-      queryBuilder: queryBuilder,
-      limit: limit,
-    );
-
-Stream<List<ActionsRecord>> queryActionsRecord({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollection(
-      ActionsRecord.collection(parent),
-      ActionsRecord.fromSnapshot,
-      queryBuilder: queryBuilder,
-      limit: limit,
-      singleRecord: singleRecord,
-    );
-
-Future<List<ActionsRecord>> queryActionsRecordOnce({
-  DocumentReference? parent,
-  Query Function(Query)? queryBuilder,
-  int limit = -1,
-  bool singleRecord = false,
-}) =>
-    queryCollectionOnce(
-      ActionsRecord.collection(parent),
-      ActionsRecord.fromSnapshot,
       queryBuilder: queryBuilder,
       limit: limit,
       singleRecord: singleRecord,

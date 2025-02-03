@@ -1,5 +1,4 @@
 import '/backend/backend.dart';
-import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import 'intro01_widget.dart' show Intro01Widget;
@@ -34,6 +33,8 @@ class Intro01Model extends FlutterFlowModel<Intro01Widget> {
   TextEditingController? passwordTextController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordTextControllerValidator;
+  // Stores action output result for [Backend Call - Create Document] action in LogIn widget.
+  ChatsRecord? newChatRef;
 
   @override
   void initState(BuildContext context) {

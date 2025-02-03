@@ -50,31 +50,38 @@ class _Onboarding03WidgetState extends State<Onboarding03Widget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          iconTheme:
-              IconThemeData(color: FlutterFlowTheme.of(context).secondaryText),
-          automaticallyImplyLeading: false,
-          leading: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              logFirebaseEvent('ONBOARDING_03_PAGE_Icon_hef8r1ye_ON_TAP');
-              logFirebaseEvent('Icon_navigate_back');
-              context.safePop();
-            },
-            child: Icon(
-              Icons.chevron_left,
-              color: FlutterFlowTheme.of(context).secondaryText,
-              size: 22.0,
-            ),
-          ),
-          actions: const [],
-          centerTitle: true,
-          elevation: 0.0,
-        ),
+        appBar: responsiveVisibility(
+          context: context,
+          tablet: false,
+          tabletLandscape: false,
+          desktop: false,
+        )
+            ? AppBar(
+                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+                iconTheme: IconThemeData(
+                    color: FlutterFlowTheme.of(context).secondaryText),
+                automaticallyImplyLeading: false,
+                leading: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    logFirebaseEvent('ONBOARDING_03_PAGE_Icon_hef8r1ye_ON_TAP');
+                    logFirebaseEvent('Icon_navigate_back');
+                    context.safePop();
+                  },
+                  child: Icon(
+                    Icons.chevron_left,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 22.0,
+                  ),
+                ),
+                actions: const [],
+                centerTitle: true,
+                elevation: 0.0,
+              )
+            : null,
         body: SafeArea(
           top: true,
           child: Padding(

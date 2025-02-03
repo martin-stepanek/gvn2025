@@ -76,38 +76,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const ChatLandingWidget() : const Intro01Widget(),
+          appStateNotifier.loggedIn ? const ChatWidget() : const Intro01Widget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? const ChatLandingWidget() : const Intro01Widget(),
+              appStateNotifier.loggedIn ? const ChatWidget() : const Intro01Widget(),
         ),
         FFRoute(
           name: 'chat',
           path: '/chat',
-          builder: (context, params) => ChatWidget(
-            chatRef: params.getParam(
-              'chatRef',
-              ParamType.DocumentReference,
-              isList: false,
-              collectionNamePath: ['chats'],
-            ),
-            category: params.getParam<CoachCategory>(
-              'category',
-              ParamType.Enum,
-            ),
-            promptSuggestions: params.getParam<String>(
-              'promptSuggestions',
-              ParamType.String,
-              isList: true,
-            ),
-            newChat: params.getParam(
-              'newChat',
-              ParamType.bool,
-            ),
-          ),
+          builder: (context, params) => const ChatWidget(),
         ),
         FFRoute(
           name: 'chat_landing',
@@ -156,11 +136,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Intro20Widget(),
         ),
         FFRoute(
-          name: 'binah_results',
-          path: '/binahResults',
-          builder: (context, params) => const BinahResultsWidget(),
-        ),
-        FFRoute(
           name: 'hf_01_intro',
           path: '/hf01Intro',
           builder: (context, params) => const Hf01IntroWidget(),
@@ -191,11 +166,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Hf26Widget(),
         ),
         FFRoute(
-          name: 'hf_feedback',
-          path: '/hfFeedback',
-          builder: (context, params) => const HfFeedbackWidget(),
-        ),
-        FFRoute(
           name: 'mw_check_in',
           path: '/mwCheckIn',
           builder: (context, params) => const MwCheckInWidget(),
@@ -214,16 +184,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'vn_03',
           path: '/vn03',
           builder: (context, params) => const Vn03Widget(),
-        ),
-        FFRoute(
-          name: 'communication_intro',
-          path: '/communicationIntro',
-          builder: (context, params) => const CommunicationIntroWidget(),
-        ),
-        FFRoute(
-          name: 'communication',
-          path: '/communication',
-          builder: (context, params) => const CommunicationWidget(),
         ),
         FFRoute(
           name: 'intro_02',
@@ -259,6 +219,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'wellbeing',
           path: '/wellbeing',
           builder: (context, params) => const WellbeingWidget(),
+        ),
+        FFRoute(
+          name: 'intro_04',
+          path: '/intro04',
+          builder: (context, params) => const Intro04Widget(),
         ),
         FFRoute(
           name: 'intro_03',

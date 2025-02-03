@@ -1,4 +1,3 @@
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/unused/assessments/healthy_futures/assessment_section/assessment_section_widget.dart';
 import 'hf01_intro_widget.dart' show Hf01IntroWidget;
@@ -21,8 +20,6 @@ class Hf01IntroModel extends FlutterFlowModel<Hf01IntroWidget> {
   late AssessmentSectionModel sleepModel;
   // Model for HealthConditions.
   late AssessmentSectionModel healthConditionsModel;
-  // Stores action output result for [Backend Call - Create Document] action in Button widget.
-  HfRecord? hfRef;
 
   @override
   void initState(BuildContext context) {

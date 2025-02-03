@@ -2,12 +2,14 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/schema/enums/enums.dart';
+import '/components/drawer/drawer_widget.dart';
 import '/flutter_flow/flutter_flow_timer.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'chat_widget.dart' show ChatWidget;
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 
 class ChatModel extends FlutterFlowModel<ChatWidget> {
   ///  Local state fields for this page.
@@ -46,8 +48,10 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
 
   ///  State fields for stateful widgets in this page.
 
+  // Stores action output result for [Backend Call - Read Document] action in chat widget.
+  ChatsRecord? lastChat;
   // Stores action output result for [Backend Call - Create Document] action in Icon widget.
-  ChatsRecord? newChatRef;
+  ChatsRecord? renewChatRef;
   // State field(s) for Timer widget.
   final timerInitialTimeMs = 0;
   int timerMilliseconds = 0;
@@ -59,19 +63,29 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
   FlutterFlowTimerController timerController =
       FlutterFlowTimerController(StopWatchTimer(mode: StopWatchMode.countUp));
 
+  // Model for drawer component.
+  late DrawerModel drawerModel1;
   // State field(s) for Prompt widget.
   FocusNode? promptFocusNode;
   TextEditingController? promptTextController;
   String? Function(BuildContext, String?)? promptTextControllerValidator;
+  // Model for drawer component.
+  late DrawerModel drawerModel2;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    drawerModel1 = createModel(context, () => DrawerModel());
+    drawerModel2 = createModel(context, () => DrawerModel());
+  }
 
   @override
   void dispose() {
     timerController.dispose();
+    drawerModel1.dispose();
     promptFocusNode?.dispose();
     promptTextController?.dispose();
+
+    drawerModel2.dispose();
   }
 
   /// Action blocks.
@@ -84,7 +98,12 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
 
     logFirebaseEvent('submitPrompt_backend_call');
 
-    var messagesRecordReference1 = MessagesRecord.createDoc(widget!.chatRef!);
+    final poemFlow = FirebaseFunctions.instance.httpsCallable('generatePoem');
+    final response = await poemFlow.call("My daughter");
+    print(response);
+
+    var messagesRecordReference1 =
+        MessagesRecord.createDoc(currentUserDocument!.lastChat!);
     await messagesRecordReference1.set(createMessagesRecordData(
       timestamp: getCurrentTimestamp,
       firstMessage: false,
@@ -121,7 +140,7 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
     aZgptCheck = await AzureGroup.aZcoachThreePointFiveCall.call(
       messagesJson: functions.generateCheckPrompt(
           promptText,
-          widget!.category,
+          CoachCategory.goal_coach,
           messages
                   .where((e) =>
                       e.include && !e.firstMessage && (e.user == User.coach))
@@ -151,7 +170,7 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
           'valid_prompt') {
         logFirebaseEvent('submitPrompt_backend_call');
 
-        await MessagesRecord.createDoc(widget!.chatRef!)
+        await MessagesRecord.createDoc(currentUserDocument!.lastChat!)
             .set(createMessagesRecordData(
           timestamp: getCurrentTimestamp,
           firstMessage: false,
@@ -201,14 +220,14 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
                 promptText,
                 'Hello!',
               ),
-              widget!.category),
+              CoachCategory.goal_coach),
         );
 
         if ((gptResponse.succeeded ?? true)) {
           logFirebaseEvent('submitPrompt_backend_call');
 
           var messagesRecordReference3 =
-              MessagesRecord.createDoc(widget!.chatRef!);
+              MessagesRecord.createDoc(currentUserDocument!.lastChat!);
           await messagesRecordReference3.set(createMessagesRecordData(
             timestamp: getCurrentTimestamp,
             firstMessage: false,
@@ -271,7 +290,7 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
               messagesRecordReference3);
           logFirebaseEvent('submitPrompt_backend_call');
 
-          await MessagesRecord.createDoc(widget!.chatRef!)
+          await MessagesRecord.createDoc(currentUserDocument!.lastChat!)
               .set(createMessagesRecordData(
             timestamp: getCurrentTimestamp,
             firstMessage: false,
@@ -333,7 +352,7 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
           } else {
             logFirebaseEvent('submitPrompt_backend_call');
 
-            await MessagesRecord.createDoc(widget!.chatRef!)
+            await MessagesRecord.createDoc(currentUserDocument!.lastChat!)
                 .set(createMessagesRecordData(
               timestamp: getCurrentTimestamp,
               firstMessage: false,
@@ -352,7 +371,7 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
         } else {
           logFirebaseEvent('submitPrompt_backend_call');
 
-          await MessagesRecord.createDoc(widget!.chatRef!)
+          await MessagesRecord.createDoc(currentUserDocument!.lastChat!)
               .set(createMessagesRecordData(
             timestamp: getCurrentTimestamp,
             firstMessage: false,
@@ -369,7 +388,7 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
       } else {
         logFirebaseEvent('submitPrompt_backend_call');
 
-        await MessagesRecord.createDoc(widget!.chatRef!)
+        await MessagesRecord.createDoc(currentUserDocument!.lastChat!)
             .set(createMessagesRecordData(
           timestamp: getCurrentTimestamp,
           firstMessage: false,
@@ -396,7 +415,7 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
         ));
         logFirebaseEvent('submitPrompt_backend_call');
 
-        await MessagesRecord.createDoc(widget!.chatRef!)
+        await MessagesRecord.createDoc(currentUserDocument!.lastChat!)
             .set(createMessagesRecordData(
           timestamp: getCurrentTimestamp,
           firstMessage: false,
@@ -446,7 +465,7 @@ class ChatModel extends FlutterFlowModel<ChatWidget> {
     } else {
       logFirebaseEvent('submitPrompt_backend_call');
 
-      await MessagesRecord.createDoc(widget!.chatRef!)
+      await MessagesRecord.createDoc(currentUserDocument!.lastChat!)
           .set(createMessagesRecordData(
         timestamp: getCurrentTimestamp,
         firstMessage: false,

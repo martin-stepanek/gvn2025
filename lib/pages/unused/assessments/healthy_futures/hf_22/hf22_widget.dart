@@ -1,5 +1,3 @@
-import '/auth/firebase_auth/auth_util.dart';
-import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -55,31 +53,38 @@ class _Hf22WidgetState extends State<Hf22Widget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          iconTheme:
-              IconThemeData(color: FlutterFlowTheme.of(context).secondaryText),
-          automaticallyImplyLeading: false,
-          leading: InkWell(
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
-            onTap: () async {
-              logFirebaseEvent('HF_22_PAGE_Icon_gcyeh4m8_ON_TAP');
-              logFirebaseEvent('Icon_navigate_back');
-              context.safePop();
-            },
-            child: Icon(
-              Icons.chevron_left,
-              color: FlutterFlowTheme.of(context).secondaryText,
-              size: 22.0,
-            ),
-          ),
-          actions: const [],
-          centerTitle: true,
-          elevation: 0.0,
-        ),
+        appBar: responsiveVisibility(
+          context: context,
+          tablet: false,
+          tabletLandscape: false,
+          desktop: false,
+        )
+            ? AppBar(
+                backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+                iconTheme: IconThemeData(
+                    color: FlutterFlowTheme.of(context).secondaryText),
+                automaticallyImplyLeading: false,
+                leading: InkWell(
+                  splashColor: Colors.transparent,
+                  focusColor: Colors.transparent,
+                  hoverColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
+                  onTap: () async {
+                    logFirebaseEvent('HF_22_PAGE_Icon_gcyeh4m8_ON_TAP');
+                    logFirebaseEvent('Icon_navigate_back');
+                    context.safePop();
+                  },
+                  child: Icon(
+                    Icons.chevron_left,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 22.0,
+                  ),
+                ),
+                actions: const [],
+                centerTitle: true,
+                elevation: 0.0,
+              )
+            : null,
         body: SafeArea(
           top: true,
           child: Padding(
@@ -389,24 +394,9 @@ class _Hf22WidgetState extends State<Hf22Widget> {
                       ? null
                       : () async {
                           logFirebaseEvent('HF_22_PAGE_NEXT_BTN_ON_TAP');
-                          if (_model.sBPdontknowValue!) {
-                            logFirebaseEvent('Button_backend_call');
-
-                            await currentUserDocument!.hfRef!
-                                .update(createHfRecordData(
-                              bpSys: 9999,
-                            ));
-                          } else {
-                            if (functions.isWithinString(
+                          if (!_model.sBPdontknowValue!) {
+                            if (!functions.isWithinString(
                                 _model.sbpTextController.text, 50.0, 200.0)!) {
-                              logFirebaseEvent('Button_backend_call');
-
-                              await currentUserDocument!.hfRef!
-                                  .update(createHfRecordData(
-                                bpSys:
-                                    int.tryParse(_model.sbpTextController.text),
-                              ));
-                            } else {
                               logFirebaseEvent('Button_show_snack_bar');
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -434,25 +424,9 @@ class _Hf22WidgetState extends State<Hf22Widget> {
                               );
                             }
                           }
-
-                          if (_model.dBPdontknowValue!) {
-                            logFirebaseEvent('Button_backend_call');
-
-                            await currentUserDocument!.hfRef!
-                                .update(createHfRecordData(
-                              bpDia: 9999,
-                            ));
-                          } else {
-                            if (functions.isWithinString(
+                          if (!_model.dBPdontknowValue!) {
+                            if (!functions.isWithinString(
                                 _model.sbpTextController.text, 40.0, 150.0)!) {
-                              logFirebaseEvent('Button_backend_call');
-
-                              await currentUserDocument!.hfRef!
-                                  .update(createHfRecordData(
-                                bpDia:
-                                    int.tryParse(_model.dbpTextController.text),
-                              ));
-                            } else {
                               logFirebaseEvent('Button_show_snack_bar');
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(

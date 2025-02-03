@@ -10,11 +10,11 @@
 		</data>
 		<key>flutter_assets/AssetManifest.bin</key>
 		<data>
-		S4ogvhICS69eL6cJjnYuikIueA0=
+		pfj+Q29k8HVbOaipXV1FnXBFBUg=
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		j6SYz7iN/u75OW7fmmrryzzMpdc=
+		vHiqgUvKEdGAya/OvReeojhNLSg=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -76,10 +76,6 @@
 		<data>
 		U+MDjaDaIhqXUK4M/vjK+Td8QRQ=
 		</data>
-		<key>flutter_assets/assets/images/Amazon_logo_pink_FinFit.png</key>
-		<data>
-		Tukub+klZl5utVNVXt1K2wSmI7g=
-		</data>
 		<key>flutter_assets/assets/images/Apple_Health.png</key>
 		<data>
 		Xv4ITJCVwQ/BC8edgiPUG+oBsIo=
@@ -99,14 +95,6 @@
 		<key>flutter_assets/assets/images/Fair.PNG</key>
 		<data>
 		7P0E1icGjdfqmy1KtVA0pZ2kO3M=
-		</data>
-		<key>flutter_assets/assets/images/Footprint_pink_FinFit.png</key>
-		<data>
-		nXC8z7Z9+D6CHSo/ZCDn+PasHEo=
-		</data>
-		<key>flutter_assets/assets/images/Form_pink_FinFit.png</key>
-		<data>
-		fXLuXi7vVEALrFdtsWZVCleg5uY=
 		</data>
 		<key>flutter_assets/assets/images/Good.PNG</key>
 		<data>
@@ -156,13 +144,13 @@
 		<data>
 		3B0gD0QdO5gytBtCnp0ix4uo2D4=
 		</data>
-		<key>flutter_assets/assets/images/Smartwatch_pink_FinFIt.png</key>
-		<data>
-		LGU4xsHGAio8kWOlOArLGkLtF8g=
-		</data>
 		<key>flutter_assets/assets/images/TipsIllustration.png</key>
 		<data>
 		G4QM35szAXsbj8Whn6fo1sWsB2g=
+		</data>
+		<key>flutter_assets/assets/images/Vitality.png</key>
+		<data>
+		Bb1uaSlwiAJP7iaPSI/MWEXPufI=
 		</data>
 		<key>flutter_assets/assets/images/VitalityLogo.png</key>
 		<data>
@@ -236,10 +224,6 @@
 		<data>
 		+XCGxXSVPK/EOsiT2RSdzT+bzy4=
 		</data>
-		<key>flutter_assets/assets/images/undraw_Activity_tracker_re_2lvv.png</key>
-		<data>
-		xSepE+CbAOTMzhJB8/QulIzAW98=
-		</data>
 		<key>flutter_assets/assets/images/vector.png</key>
 		<data>
 		A9I+l/7PrRGQa3XPU5pFeg0SxS0=
@@ -282,7 +266,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		1dg5Zlf1DRHWlwqFcGu4VY1027E=
+		r8tXw3MFPEJp5+HsgOKDe416sw4=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -323,14 +307,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			h5mIGmKN6H1l5/UlSNx9/Wsql1FQK/vNmItxELDy/MQ=
+			o9SHZWq9LYw3ya2pj9QwoJEoWYJ/XtsLwYwpg4PdqDI=
 			</data>
 		</dict>
 		<key>flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ngbxBFoMMhjqZjrDnEv8jEiUdKGttM2UtDMxSmWHUYo=
+			p1YAqUFg4EcT52yxndwuFkTdOzfN1onwMjjF1Xc6iws=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -438,13 +422,6 @@
 			wFJaS8Ku+EwWAk1zuBhub+z57BW476UZNcqGVCQuRrw=
 			</data>
 		</dict>
-		<key>flutter_assets/assets/images/Amazon_logo_pink_FinFit.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			XU7iMwQuvfAgypd1sGtoH1JJ5fHBGCqqfPd9DcoUH4M=
-			</data>
-		</dict>
 		<key>flutter_assets/assets/images/Apple_Health.png</key>
 		<dict>
 			<key>hash2</key>
@@ -478,20 +455,6 @@
 			<key>hash2</key>
 			<data>
 			5YR5PQ7aMde1N92AJ/sF6+CLVLTDrNRuhY3Gt/oaaTI=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/Footprint_pink_FinFit.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			m26pZQA9LBI0xSsnrh8QAVoJsGRI5jQ1F4XuqJI2pEg=
-			</data>
-		</dict>
-		<key>flutter_assets/assets/images/Form_pink_FinFit.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			DgOKcGAzxvHEm/CPnsSEUrbUwRSSvpzzTJAMlVbYVOM=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/images/Good.PNG</key>
@@ -578,18 +541,18 @@
 			c092rRE8iIkF4Nao6oNmnB62XFzs/OD6MjnU4c8gq0o=
 			</data>
 		</dict>
-		<key>flutter_assets/assets/images/Smartwatch_pink_FinFIt.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			KKlwU0UAsDV7YadLf3B4HTI/v3oWXUgi4auwoQ2jP9M=
-			</data>
-		</dict>
 		<key>flutter_assets/assets/images/TipsIllustration.png</key>
 		<dict>
 			<key>hash2</key>
 			<data>
 			uJxBVD5eSY/Imjr2XS2QBxfBlvpQohMXlK78pm1V2Lk=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/images/Vitality.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			rzyecsoG0pmFDTQgK7+7T6xSlEozwHKHzkCeBvAyUkg=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/images/VitalityLogo.png</key>
@@ -718,13 +681,6 @@
 			OlNFC+FexqmNDwa8ZGMf3WZ3cwUkXq66P5IR0F9ICeo=
 			</data>
 		</dict>
-		<key>flutter_assets/assets/images/undraw_Activity_tracker_re_2lvv.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			VttoRsgjW/siippdA7nPK+29Iea8DBCdXrIVGZSpuIU=
-			</data>
-		</dict>
 		<key>flutter_assets/assets/images/vector.png</key>
 		<dict>
 			<key>hash2</key>
@@ -799,7 +755,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			uzZ/eLFHEjzAzoreE+43WD3WieOguCY8WR3dz7DLtQM=
+			HMG+uQHA6zg6Rm3BQwBl6hXSPNkLYN9Au1ju8BQEVkA=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>

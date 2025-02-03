@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'index.dart'; // Imports other custom actions
+
 import '/auth/firebase_auth/auth_util.dart';
 
 dynamic intentPrompt(String? intent) async {
@@ -49,8 +51,8 @@ dynamic intentPrompt(String? intent) async {
 
     instructions = """
       My characteristics:
-      - gender: ${currentUserDocument?.gender?.name ?? 'unknown'}
-      - age: ${currentUserDocument?.age ?? 'unknown'}
+      - gender: 'unknown'
+      - age: 'unknown'
       ---
       My activity summary from my activity tracker (daily steps):
       - total days observed: ${paData.length}
@@ -115,8 +117,8 @@ dynamic intentPrompt(String? intent) async {
 
     instructions = """
       My characteristics:
-      - gender: ${currentUserDocument?.gender?.name ?? 'unknown'}
-      - age: ${currentUserDocument?.age ?? 'unknown'}
+      - gender: 'unknown'
+      - age: 'unknown'
       ---
       My activity summary from my activity tracker:
       - total days observed: ${paData.length}
@@ -166,8 +168,8 @@ dynamic intentPrompt(String? intent) async {
 
     instructions = """
       My characteristics:
-      - gender: ${currentUserDocument?.gender?.name ?? 'unknown'}
-      - age: ${currentUserDocument?.age ?? 'unknown'}
+      - gender: 'unknown'
+      - age: 'unknown'
       ---
       My activity summary from my activity tracker:
       - total days observed: ${paData.length}
@@ -249,8 +251,8 @@ dynamic intentPrompt(String? intent) async {
 
     instructions = """
       My characteristics:
-      - gender: ${currentUserDocument?.gender?.name ?? 'unknown'}
-      - age: ${currentUserDocument?.age ?? 'unknown'}
+      - gender: 'unknown'
+      - age: 'unknown'
       ---
       My activity summary from my activity tracker (daily steps):
       - total days observed: ${paData.length}
@@ -296,8 +298,8 @@ dynamic intentPrompt(String? intent) async {
 
     instructions = """
       My characteristics:
-      - gender: ${currentUserDocument?.gender?.name ?? 'unknown'}
-      - age: ${currentUserDocument?.age ?? 'unknown'}
+      - gender: 'unknown'
+      - age: 'unknown'
       ---
       My activity summary from my activity tracker:
       - total days observed: ${paData.length}
@@ -383,8 +385,8 @@ dynamic intentPrompt(String? intent) async {
 
     instructions = """
       My characteristics:
-      - gender: ${currentUserDocument?.gender?.name ?? 'unknown'}
-      - age: ${currentUserDocument?.age ?? 'unknown'}
+      - gender: 'unknown'
+      - age: 'unknown'
       ---
       My activity summary from my activity tracker:
       - total days observed: ${paData.length}

@@ -30,4 +30,9 @@ abstract class FFAppConstants {
     'HRV'
   ];
   static const int appVersion = 4;
+  static const List<String> defaultSuggestions = [
+    'How can I improve my health?',
+    'How long will I live?',
+    'Give me a healthy recipe based on my food preferences.'
+  ];
 }

@@ -301,6 +301,57 @@ class _Intro01WidgetState extends State<Intro01Widget> {
                             }
                             logFirebaseEvent('LogIn_backend_call');
 
+                            var chatsRecordReference =
+                                ChatsRecord.collection.doc();
+                            await chatsRecordReference.set({
+                              ...createChatsRecordData(
+                                userRef: currentUserReference,
+                                timestamp: getCurrentTimestamp,
+                                title: 'My first chat',
+                                newChat: true,
+                              ),
+                              ...mapToFirestore(
+                                {
+                                  'suggestions':
+                                      FFAppConstants.defaultSuggestions,
+                                },
+                              ),
+                            });
+                            _model.newChatRef =
+                                ChatsRecord.getDocumentFromData({
+                              ...createChatsRecordData(
+                                userRef: currentUserReference,
+                                timestamp: getCurrentTimestamp,
+                                title: 'My first chat',
+                                newChat: true,
+                              ),
+                              ...mapToFirestore(
+                                {
+                                  'suggestions':
+                                      FFAppConstants.defaultSuggestions,
+                                },
+                              ),
+                            }, chatsRecordReference);
+                            logFirebaseEvent('LogIn_backend_call');
+
+                            await MessagesRecord.createDoc(
+                                    _model.newChatRef!.reference)
+                                .set(createMessagesRecordData(
+                              timestamp: getCurrentTimestamp,
+                              firstMessage: true,
+                              message:
+                                  'Hi there, welcome to Vitality GVC 2025! How can I help you?',
+                              user: User.coach,
+                              userRef: currentUserReference,
+                              include: true,
+                              secondsToGenerate: 0.0,
+                              costUsd: 0.0,
+                              tokensTotal: 0,
+                              tokensPrompt: 0,
+                              tokensResponse: 0,
+                            ));
+                            logFirebaseEvent('LogIn_backend_call');
+
                             await currentUserReference!
                                 .update(createUsersRecordData(
                               os: () {
@@ -317,10 +368,13 @@ class _Intro01WidgetState extends State<Intro01Widget> {
                               timezoneOffset: functions.getTimezeonOffset(),
                               progress: Progress.account_created,
                               appVersion: FFAppConstants.appVersion,
+                              lastChat: _model.newChatRef?.reference,
                             ));
                             logFirebaseEvent('LogIn_navigate_to');
 
                             context.goNamedAuth('intro_02', context.mounted);
+
+                            safeSetState(() {});
                           },
                           text: 'Log in',
                           options: FFButtonOptions(
